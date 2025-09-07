@@ -1,0 +1,8 @@
+pandas
+numpy
+scikit-learn
+tensorflow>=2.12
+transformers
+jupyter
+pyarrow
+fastparquet

@@ -1,0 +1,10 @@
+# Ignore data
+data/*
+!data/README.md
+
+# Ignore venv, cache, system files
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+.ipynb_checkpoints/
