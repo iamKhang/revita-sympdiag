@@ -1,51 +1,21 @@
 itemid,label,count
-50971,Potassium,57874
-50983,Sodium,57319
-50902,Chloride,56839
-51221,Hematocrit,56608
-50912,Creatinine,56355
-51006,Urea Nitrogen,55954
-50882,Bicarbonate,55406
-50868,Anion Gap,55279
-50931,Glucose,54769
-51265,Platelet Count,53634
-51222,Hemoglobin,53219
-51301,White Blood Cells,52879
-51249,MCHC,52781
-51248,MCH,52779
-51250,MCV,52779
-51277,RDW,52779
-51279,Red Blood Cells,52779
-50960,Magnesium,51073
-50970,Phosphate,47937
-50893,"Calcium, Total",47883
-51275,PTT,28860
-51237,INR(PT),27122
-51274,PT,27120
-52172,RDW-SD,25298
-51678,L,24335
-50934,H,24334
-50947,I,24333
-50861,Alanine Aminotransferase (ALT),15569
-50878,Asparate Aminotransferase (AST),15537
-50885,"Bilirubin, Total",15404
-52033,Specimen Type,15389
-50863,Alkaline Phosphatase,15064
-50820,pH,14138
-50804,Calculated Total CO2,12817
-50821,pO2,12817
-50802,Base Excess,12816
-50818,pCO2,12812
-51146,Basophils,10178
-51200,Eosinophils,10178
-51244,Lymphocytes,10178
-51254,Monocytes,10178
-51256,Neutrophils,10178
-50813,Lactate,9699
-50954,Lactate Dehydrogenase (LD),8722
-50862,Albumin,8125
-50808,Free Calcium,7050
-50920,Estimated GFR (MDRD equation),6706
-51464,Bilirubin,5879
-51466,Blood,5879
-51478,Glucose,5879
+50971,Potassium,80786
+51221,Hematocrit,80010
+50983,Sodium,79951
+50902,Chloride,79311
+50912,Creatinine,78161
+51006,Urea Nitrogen,77558
+50882,Bicarbonate,76837
+50868,Anion Gap,76624
+50931,Glucose,75701
+51265,Platelet Count,75390
+51222,Hemoglobin,74427
+51301,White Blood Cells,73866
+51249,MCHC,73729
+51248,MCH,73726
+51250,MCV,73726
+51279,Red Blood Cells,73726
+51277,RDW,73724
+50960,Magnesium,72055
+50970,Phosphate,67362
+50893,"Calcium, Total",67289
