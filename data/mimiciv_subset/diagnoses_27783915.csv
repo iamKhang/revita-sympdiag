@@ -1,0 +1,26 @@
+subject_id,hadm_id,icd_code,icd_version,long_title
+12602424,27783915,5789,9,"Hemorrhage of gastrointestinal tract, unspecified"
+12602424,27783915,5849,9,"Acute kidney failure, unspecified"
+12602424,27783915,42822,9,Chronic systolic heart failure
+12602424,27783915,4280,9,"Congestive heart failure, unspecified"
+12602424,27783915,2859,9,"Anemia, unspecified"
+12602424,27783915,27650,9,"Volume depletion, unspecified"
+12602424,27783915,2767,9,Hyperpotassemia
+12602424,27783915,41401,9,Coronary atherosclerosis of native coronary artery
+12602424,27783915,V4582,9,Percutaneous transluminal coronary angioplasty status
+12602424,27783915,4019,9,Unspecified essential hypertension
+12602424,27783915,25000,9,"Diabetes mellitus without mention of complication, type II or unspecified type, not stated as uncontrolled"
+12602424,27783915,V5867,9,Long-term (current) use of insulin
+12602424,27783915,4263,9,Other left bundle branch block
+12602424,27783915,2724,9,Other and unspecified hyperlipidemia
+12602424,27783915,V433,9,Heart valve replaced by other means
+12602424,27783915,V433,10,"Unspecified car occupant injured in collision with car, pick-up truck or van in nontraffic accident"
+12602424,27783915,53010,9,"Esophagitis, unspecified"
+12602424,27783915,53560,9,"Duodenitis, without mention of hemorrhage"
+12602424,27783915,4439,9,"Peripheral vascular disease, unspecified"
+12602424,27783915,28860,9,"Leukocytosis, unspecified"
+12602424,27783915,2989,9,Unspecified psychosis
+12602424,27783915,2113,9,Benign neoplasm of colon
+12602424,27783915,53550,9,"Unspecified gastritis and gastroduodenitis, without mention of hemorrhage"
+12602424,27783915,412,9,Old myocardial infarction
+12602424,27783915,V1254,9,"Personal history of transient ischemic attack (TIA), and cerebral infarction without residual deficits"
