@@ -13,6 +13,9 @@ data/mimic-iv-note
 data/mimiciv
 data/proc/examples.parquet
 data/mimiciv_subset/discharge.csv
+data/mimiciv_subset/discharge.csv.gz
+data/mimiciv_subset/discharge_full.csv.gz
+
 
 
 # Ignore venv, cache, system files
