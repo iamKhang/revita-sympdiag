@@ -1,0 +1,51 @@
+icd_code,icd_version,long_title,count
+4019,9,Unspecified essential hypertension,102368
+E785,10,"Hyperlipidemia, unspecified",84570
+I10,10,Essential (primary) hypertension,83775
+2724,9,Other and unspecified hyperlipidemia,67293
+Z87891,10,Personal history of nicotine dependence,62806
+K219,10,Gastro-esophageal reflux disease without esophagitis,56157
+53081,9,Esophageal reflux,48628
+25000,9,"Diabetes mellitus without mention of complication, type II or unspecified type, not stated as uncontrolled",43077
+F329,10,"Major depressive disorder, single episode, unspecified",41876
+I2510,10,Atherosclerotic heart disease of native coronary artery without angina pectoris,41550
+F419,10,"Anxiety disorder, unspecified",38911
+42731,9,Atrial fibrillation,37070
+4280,9,"Congestive heart failure, unspecified",36606
+311,9,"Depressive disorder, not elsewhere classified",36349
+41401,9,Coronary atherosclerosis of native coronary artery,36083
+N179,10,"Acute kidney failure, unspecified",35884
+Z20822,10,Contact with and (suspected) exposure to COVID-19,33113
+V1582,9,Personal history of tobacco use,31705
+Z7901,10,Long term (current) use of anticoagulants,30957
+5849,9,"Acute kidney failure, unspecified",29136
+2449,9,Unspecified acquired hypothyroidism,28521
+E039,10,"Hypothyroidism, unspecified",28000
+Z794,10,Long term (current) use of insulin,27642
+E119,10,Type 2 diabetes mellitus without complications,26266
+3051,9,Tobacco use disorder,25879
+2859,9,"Anemia, unspecified",24395
+F17210,10,"Nicotine dependence, cigarettes, uncomplicated",24106
+G4733,10,Obstructive sleep apnea (adult) (pediatric),23933
+40390,9,"Hypertensive chronic kidney disease, unspecified, with chronic kidney disease stage I through stage IV, or unspecified",23831
+V5861,9,Long-term (current) use of anticoagulants,22635
+30000,9,"Anxiety state, unspecified",22399
+E669,10,"Obesity, unspecified",22004
+D649,10,"Anemia, unspecified",21137
+I4891,10,Unspecified atrial fibrillation,21022
+J45909,10,"Unspecified asthma, uncomplicated",20679
+5990,9,"Urinary tract infection, site not specified",20387
+Z7902,10,Long term (current) use of antithrombotics/antiplatelets,19961
+2720,9,Pure hypercholesterolemia,19880
+Y929,10,Unspecified place or not applicable,19830
+49390,9,"Asthma, unspecified type, unspecified",19703
+V5867,9,Long-term (current) use of insulin,19600
+D62,10,Acute posthemorrhagic anemia,19356
+Z66,10,Do not resuscitate,18899
+E1122,10,Type 2 diabetes mellitus with diabetic chronic kidney disease,18564
+J449,10,"Chronic obstructive pulmonary disease, unspecified",18025
+5859,9,"Chronic kidney disease, unspecified",17872
+32723,9,Obstructive sleep apnea (adult)(pediatric),17556
+E871,10,Hypo-osmolality and hyponatremia,17069
+N390,10,"Urinary tract infection, site not specified",16696
+I129,10,"Hypertensive chronic kidney disease with stage 1 through stage 4 chronic kidney disease, or unspecified chronic kidney disease",16650
