@@ -1,13 +1,18 @@
 # Ignore data
-data/*
-!data/README.md
-!data/proc/
-data/proc/*
-!data/proc/icd_block_details.csv
-!data/proc/top_lab_items.csv
-!data/proc/top_icd_blocks.csv
-!data/proc/icd_block_details.xlsx
-!data/proc/lab_top_items.xlsx
+# data/*
+# !data/README.md
+# !data/proc/
+# data/proc/*
+# !data/proc/icd_block_details.csv
+# !data/proc/top_lab_items.csv
+# !data/proc/top_icd_blocks.csv
+# !data/proc/icd_block_details.xlsx
+# !data/proc/lab_top_items.xlsx
+
+data/mimic-iv-note
+data/mimiciv
+data/proc/examples.parquet
+
 
 # Ignore venv, cache, system files
 venv/
