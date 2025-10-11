@@ -1,8 +1,0 @@
-subject_id,hadm_id,icd_code,icd_version,long_title
-12602424,27783915,3893,9,"Venous catheterization, not elsewhere classified"
-12602424,27783915,9904,9,Transfusion of packed cells
-12602424,27783915,3891,9,Arterial catheterization
-12602424,27783915,9604,9,Insertion of endotracheal tube
-12602424,27783915,3323,9,Other bronchoscopy
-12602424,27783915,4523,9,Colonoscopy
-12602424,27783915,4513,9,Other endoscopy of small intestine

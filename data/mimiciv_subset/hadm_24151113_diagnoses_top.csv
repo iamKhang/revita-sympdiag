@@ -1,5 +1,0 @@
-subject_id,hadm_id,icd_code,icd_version,long_title
-14471034,24151113,N179,10,"Acute kidney failure, unspecified"
-14471034,24151113,E871,10,Hypo-osmolality and hyponatremia
-14471034,24151113,Z66,10,Do not resuscitate
-14471034,24151113,F419,10,"Anxiety disorder, unspecified"
