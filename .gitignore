@@ -15,6 +15,9 @@ data/proc/examples.parquet
 data/mimiciv_subset/discharge.csv
 data/mimiciv_subset/discharge.csv.gz
 data/mimiciv_subset/discharge_full.csv.gz
+data/proc/train_unified.parquet
+
+models/
 
 
 
