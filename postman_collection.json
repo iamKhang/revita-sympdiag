@@ -1,0 +1,208 @@
+{
+	"info": {
+		"_postman_id": "revita-sympdiag-api",
+		"name": "Revita Symptom Diagnosis API",
+		"description": "API collection for Revita Symptom Diagnosis FastAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						""
+					]
+				},
+				"description": "Check if API is running"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Docs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/docs",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"docs"
+					]
+				},
+				"description": "Get docs endpoint"
+			},
+			"response": []
+		},
+		{
+			"name": "Predict Disease - Chest Pain",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"age\": 65,\n  \"gender\": \"M\",\n  \"notes\": \"Patient presents with chest pain, shortness of breath, and fatigue. History of hypertension and diabetes.\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/predict",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"predict"
+					]
+				},
+				"description": "Predict disease for patient with chest pain symptoms"
+			},
+			"response": []
+		},
+		{
+			"name": "Predict Disease - Fever",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"age\": 28,\n  \"gender\": \"F\",\n  \"notes\": \"Patient presents with high fever, headache, body aches, and fatigue. Symptoms started 3 days ago.\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/predict",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"predict"
+					]
+				},
+				"description": "Predict disease for patient with fever symptoms"
+			},
+			"response": []
+		},
+		{
+			"name": "Predict Disease - Abdominal Pain",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"age\": 45,\n  \"gender\": \"F\",\n  \"notes\": \"Patient complains of severe abdominal pain, nausea, vomiting, and loss of appetite. Pain is localized to right lower quadrant.\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/predict",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"predict"
+					]
+				},
+				"description": "Predict disease for patient with abdominal pain symptoms"
+			},
+			"response": []
+		},
+		{
+			"name": "Predict Disease - Respiratory",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"age\": 72,\n  \"gender\": \"M\",\n  \"notes\": \"Patient presents with persistent cough, difficulty breathing, and wheezing. History of smoking for 30 years.\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/predict",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"predict"
+					]
+				},
+				"description": "Predict disease for patient with respiratory symptoms"
+			},
+			"response": []
+		},
+		{
+			"name": "Predict Disease - Neurological",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"age\": 58,\n  \"gender\": \"F\",\n  \"notes\": \"Patient presents with sudden onset of severe headache, dizziness, and difficulty speaking. Family history of stroke.\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/predict",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"predict"
+					]
+				},
+				"description": "Predict disease for patient with neurological symptoms"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000",
+			"type": "string"
+		}
+	]
+}
