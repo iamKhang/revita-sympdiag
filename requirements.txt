@@ -7,3 +7,5 @@ jupyter
 pyarrow
 fastparquet
 tf-keras
+fastapi
+uvicorn[standard]
