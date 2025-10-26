@@ -1,0 +1,23 @@
+# Loại bỏ toàn bộ data, trừ file ICD cần giữ lại
+data/*
+!data/mimiciv/
+data/mimiciv/*
+!data/mimiciv/3.1/
+data/mimiciv/3.1/*
+!data/mimiciv/3.1/hosp/
+data/mimiciv/3.1/hosp/*
+!data/mimiciv/3.1/hosp/d_icd_diagnoses.csv.gz
+
+
+notebooks/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+*.csv
+*.ipynb
+.DS_Store
+.git/
+.gitignore
+venv/

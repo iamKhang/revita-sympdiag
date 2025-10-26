@@ -21,6 +21,9 @@ def load_icd_mapping():
     title_map = {(int(v), c.strip()): lt for c, v, lt in zip(d.icd_code, d.icd_version, d.long_title)}
     return title_map
 
+# Default config
+MAX_TOKENS = 8000  # Default value
+
 # Load model and data once at startup
 try:
     bundle = load_model()
