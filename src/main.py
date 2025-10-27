@@ -9,6 +9,16 @@ import os
 
 app = FastAPI(title="Revita Symptom Diagnosis API", version="1.0.0")
 
+# Cấu hình CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Cho phép tất cả domain
+    allow_credentials=True,
+    allow_methods=["*"],  # Cho phép mọi phương thức (GET, POST, PUT, DELETE,...)
+    allow_headers=["*"],  # Cho phép mọi header
+)
+
+
 # Load model and data
 def load_model():
     model_path = os.path.join(os.path.dirname(__file__), "..", "models", "ovr_sgd_tfidf.joblib")
