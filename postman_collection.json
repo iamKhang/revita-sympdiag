@@ -176,6 +176,104 @@
 				"description": "Predict disease for patient with neurological symptoms"
 			},
 			"response": []
+		},
+		{
+			"name": "Translate English to Vietnamese",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"text\": \"Patient needs instructions for medication adherence and follow-up visit scheduling.\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/translate/en-vi",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"translate",
+						"en-vi"
+					]
+				},
+				"description": "Translate English clinical guidance to Vietnamese"
+			},
+			"response": [],
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"const body = pm.response.json();",
+							"pm.test(\"Response contains translated text\", function () {",
+							"    pm.expect(body.translated_text).to.be.a('string');",
+							"    pm.expect(body.translated_text.length).to.be.greaterThan(0);",
+							"});",
+							"pm.test(\"Target language is Vietnamese\", function () {",
+							"    pm.expect(body.target_language).to.eql('vi');",
+							"});"
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Translate Vietnamese to English",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"text\": \"Bệnh nhân cần được tư vấn chế độ dinh dưỡng và lịch tái khám.\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/translate/vi-en",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"translate",
+						"vi-en"
+					]
+				},
+				"description": "Translate Vietnamese clinical note to English"
+			},
+			"response": [],
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"const body = pm.response.json();",
+							"pm.test(\"Response contains translated text\", function () {",
+							"    pm.expect(body.translated_text).to.be.a('string');",
+							"    pm.expect(body.translated_text.length).to.be.greaterThan(0);",
+							"});",
+							"pm.test(\"Target language is English\", function () {",
+							"    pm.expect(body.target_language).to.eql('en');",
+							"});"
+						]
+					}
+				}
+			]
 		}
 	],
 	"event": [

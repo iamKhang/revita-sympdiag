@@ -7,3 +7,4 @@ fastparquet
 fastapi
 uvicorn[standard]
 joblib==1.5.2
+deep-translator

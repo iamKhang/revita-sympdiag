@@ -1,11 +1,13 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from typing import List, Dict
+from typing import List
 import joblib
 import numpy as np
 import pandas as pd
 from pathlib import Path
 import os
+from deep_translator import GoogleTranslator
 
 app = FastAPI(title="Revita Symptom Diagnosis API", version="1.0.0")
 
@@ -64,6 +66,9 @@ class PredictionResponse(BaseModel):
     predictions: List[DiseasePrediction]
     patient_info: PatientInfo
 
+class TranslationRequest(BaseModel):
+    text: str
+
 # Helper functions
 def _truncate(s, mx=MAX_TOKENS):
     return " ".join(str(s).split()[:mx])
@@ -92,6 +97,15 @@ def icd_name_from_prefixed(code_with_prefix: str) -> str:
         return title_map.get((int(ver_str), code), "(unknown title)")
     except Exception:
         return "(unknown title)"
+
+def translate_text(text: str, source_lang: str, target_lang: str) -> str:
+    if not text or not text.strip():
+        raise HTTPException(status_code=400, detail="Text to translate must not be empty.")
+    try:
+        translator = GoogleTranslator(source=source_lang, target=target_lang)
+        return translator.translate(text)
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=f"Translation failed: {exc}")
 
 # API endpoints
 @app.get("/docs")
@@ -127,6 +141,26 @@ async def predict_disease(patient: PatientInfo):
         predictions=disease_predictions,
         patient_info=patient
     )
+
+@app.post("/translate/en-vi")
+async def translate_en_vi(payload: TranslationRequest):
+    translated_text = translate_text(payload.text, "en", "vi")
+    return {
+        "source_language": "en",
+        "target_language": "vi",
+        "source_text": payload.text,
+        "translated_text": translated_text,
+    }
+
+@app.post("/translate/vi-en")
+async def translate_vi_en(payload: TranslationRequest):
+    translated_text = translate_text(payload.text, "vi", "en")
+    return {
+        "source_language": "vi",
+        "target_language": "en",
+        "source_text": payload.text,
+        "translated_text": translated_text,
+    }
 
 if __name__ == "__main__":
     import uvicorn
