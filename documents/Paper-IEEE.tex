@@ -1,0 +1,577 @@
+NGUYỄN THỊ HOÀNG KHÁNH, LÊ HOÀNG KHANG, TRẦN ĐÌNH KIÊN
+
+\emph{Khoa Công nghệ thông tin, Trường Đại học Công nghiệp Thành phố Hồ
+Chí Minh}
+
+\href{mailto:nguyenthihoangkhanh@iuh.edu.vn}{\nolinkurl{nguyenthihoangkhanh@iuh.edu.vn}},
+
+\href{mailto:hoangkhang.dev@gmail.com}{\nolinkurl{hoangkhang.dev@gmail.com}},
+\href{mailto:tranndinhkien.dev@gmail.com}{\nolinkurl{tranndinhkien.dev@gmail.com}}
+
+\textbf{Abstract.} Vietnam\textquotesingle s multi-specialty clinics
+rely on outdated manual processes, including queuing for registration,
+handwritten patient records prone to errors, manual clinical notes, and
+cash/bank transfer payments. Staff manually cross-reference separate
+ledgers, causing severe congestion during peak hours. These
+inefficiencies prolong examinations, increase patient waiting times,
+foster dissatisfaction, risk record mix-ups, and violate priority
+principles for policy beneficiaries, the elderly, pregnant women, and
+emergencies, delaying timely care.
+
+With Vietnam\textquotesingle s population aging rapidly---projected to
+surpass 20\% over 60 by 2030---coupled with rising chronic diseases and
+modern lifestyle demands, the traditional system faces immense pressure.
+Vietnam lags regionally in healthcare access, underscoring the need for
+digital transformation per the national strategy by 2025.
+
+Revita addresses these challenges as an intelligent management
+application for multi-specialty clinics. It integrates AI to
+auto-prioritize appointments per legal regulations, enables 24/7 online
+booking, manages real-time doctor schedules with conflict alerts, and
+streamlines registration, electronic records, and bank transfer
+payments.
+
+Additionally, Revita features an AI chatbot for direct patient
+assistance during visits and an NLP-based diagnosis recommendation
+system that extracts symptoms from notes to suggest accurate options.
+This allows doctors to focus on treatment, reduces waiting times,
+minimizes errors, and boosts efficiency, ensuring faster, equitable
+healthcare for all.
+
+\textbf{Keyword.} Medical Examination Process, Patient Record
+Management, Medical Text-Based Disease Diagnosis, Next.js, Nest.js, AI
+Chatbot, Recommendation System.
+
+\textbf{Tóm tắt.} Các phòng khám đa khoa tại Việt Nam hiện vẫn phụ thuộc
+vào quy trình thủ công lạc hậu, bao gồm xếp hàng đăng ký, ghi chép hồ sơ
+bệnh nhân bằng tay dễ sai sót, viết tay phiếu khám bệnh và thanh toán
+bằng tiền mặt/chuyển khoản. Nhân viên phải đối chiếu thủ công các sổ
+sách riêng lẻ, dẫn đến tình trạng ùn tắc nghiêm trọng vào giờ cao điểm.
+Những bất cập này làm kéo dài thời gian khám bệnh, tăng thời gian chờ
+đợi của bệnh nhân, gây bất mãn, nguy cơ nhầm lẫn hồ sơ và vi phạm nguyên
+tắc ưu tiên đối với người có công, người cao tuổi, phụ nữ mang thai và
+trường hợp cấp cứu, làm chậm trễ việc chăm sóc kịp thời.
+
+Với dân số Việt Nam đang già hóa nhanh chóng -- dự kiến vượt 20\% trên
+60 tuổi vào năm 2030 -- cùng sự gia tăng bệnh mãn tính và nhu cầu lối
+sống hiện đại, hệ thống truyền thống đang chịu áp lực cực lớn. Việt Nam
+còn tụt hậu so với khu vực về tiếp cận dịch vụ y tế, do đó cần thúc đẩy
+chuyển đổi số theo chiến lược quốc gia đến năm 2025.
+
+Revita giải quyết các thách thức trên bằng ứng dụng quản lý thông minh
+dành cho phòng khám đa khoa. Ứng dụng tích hợp AI để tự động ưu tiên
+lịch hẹn theo quy định pháp luật, hỗ trợ đặt lịch trực tuyến 24/7, quản
+lý lịch bác sĩ theo thời gian thực với cảnh báo xung đột, đồng thời đơn
+giản hóa quy trình đăng ký, hồ sơ điện tử và thanh toán chuyển khoản.
+
+Ngoài ra, Revita cung cấp chatbot AI hỗ trợ bệnh nhân trực tiếp trong
+quá trình khám và hệ thống gợi ý chẩn đoán dựa trên NLP -- trích xuất
+triệu chứng từ ghi chú để đề xuất phương án chính xác. Nhờ đó, bác sĩ
+tập trung vào điều trị, giảm thời gian chờ, hạn chế sai sót, nâng cao
+hiệu quả, đảm bảo dịch vụ y tế nhanh hơn, công bằng hơn cho mọi người.
+
+\textbf{Từ khóa.} Quy trình khám bệnh, Quản lý hồ sơ bệnh nhân, Chẩn
+đoán bệnh dựa trên văn bản y khoa, Next.js, Nest.js, Chatbot AI, Hệ
+thống gợi ý.
+
+\section{GIỚI THIỆU}\label{giux1edbi-thiux1ec7u}
+
+Quy trình quản lý khám bệnh tại các phòng khám đa khoa ở Việt Nam bao
+gồm nhiều giai đoạn tuần tự: lấy số thứ tự, hoàn tất thủ tục hành chính
+để đăng ký và khám bệnh, chỉ định các dịch vụ chẩn đoán và thủ thuật cần
+thiết, thanh toán chi phí, và cuối cùng là bác sĩ chẩn đoán tình trạng
+bệnh, kê đơn thuốc cho bệnh nhân. Quy trình này đòi hỏi sự phối hợp chặt
+chẽ giữa nhiều bên liên quan, bao gồm nhân viên hành chính, bác sĩ, bệnh
+nhân và thu ngân. Với dân số già hóa nhanh chóng và nhu cầu y tế ngày
+càng gia tăng, việc duy trì hiệu quả và công bằng trong quản lý trở nên
+cực kỳ thách thức, đặc biệt khi các bước thủ công dẫn đến ùn tắc và sai
+sót.
+
+Để giải quyết các vấn đề này, chúng tôi đã phát triển và triển khai
+\emph{\textbf{Revita: Hệ thống Quản lý Khám bệnh Thông minh Tích hợp Gợi
+ý Chẩn đoán và Chatbot dành cho Phòng khám Đa khoa}} -- một giải pháp
+công nghệ hiện đại nhằm tối ưu hóa và tự động hóa toàn bộ các giai đoạn
+trong quy trình khám bệnh. Hệ thống không chỉ giảm tải công việc hành
+chính mà còn nâng cao trải nghiệm tổng thể cho cả bệnh nhân và bác sĩ
+trong suốt hành trình chăm sóc sức khỏe.
+
+Revita được xây dựng trên các nền tảng web, di động và máy tính để bàn,
+sử dụng các công nghệ tiên tiến như Next.js, Nest.js, React Native và
+Electron. Điều này đảm bảo tính linh hoạt và khả năng truy cập, cho phép
+người dùng tương tác mượt mà mọi lúc, mọi nơi -- từ đặt lịch khám trực
+tuyến đến hiển thị số thứ tự theo thời gian thực trên màn hình kiosk.
+Mục tiêu chính là nâng cao hiệu quả quản lý, cung cấp công cụ hỗ trợ tự
+động và tạo ra môi trường hiện đại, thân thiện với bệnh nhân cũng như
+nhân viên y tế.
+
+Một tính năng nổi bật là hệ thống gợi ý chẩn đoán dựa trên ghi chú y
+khoa, công cụ thông minh được thiết kế chuyên biệt để hỗ trợ bác sĩ phân
+tích triệu chứng và đề xuất các tình trạng bệnh phù hợp. Hệ thống sử
+dụng xử lý ngôn ngữ tự nhiên (NLP) để trích xuất thông tin chính từ văn
+bản lâm sàng, kết hợp với thuật toán gợi ý dựa trên nội dung nhằm đưa ra
+các đề xuất chính xác và nhanh chóng -- từ đó nâng cao độ tin cậy trong
+chẩn đoán.
+
+\section{CƠ SỞ LÝ THUYẾT}\label{cux1a1-sux1edf-luxfd-thuyux1ebft}
+
+\subsection{Kiến trúc phần
+mềm}\label{kiux1ebfn-truxfac-phux1ea7n-mux1ec1m}
+
+\begin{figure}
+\centering
+\includegraphics[width=3.00678in,height=2.76316in]{media/image1.png}
+\caption{Hình 1 Sơ đồ kiến trúc của phần mềm}
+\end{figure}
+
+\textbf{Tầng giao diện người dùng (Client Layer):} bao gồm ba ứng dụng
+độc lập về nền tảng nhưng thống nhất về trải nghiệm người dùng. Ứng dụng
+web được xây dựng trên Next.js với kiến trúc App Router hiện đại; ứng
+dụng di động được phát triển bằng React Native nhằm tối ưu hiệu năng
+trên cả hai hệ điều hành chính; ứng dụng desktop được đóng gói bằng
+Electron để đáp ứng nhu cầu xử lý tác vụ nặng tại các phòng khám. Các
+ứng dụng này chỉ chịu trách nhiệm hiển thị dữ liệu và thu thập tương tác
+người dùng, không chứa bất kỳ logic nghiệp vụ nào.
+
+\textbf{Tầng trình diễn (Presentation Layer)}: được thực hiện bởi Nginx
+đóng vai trò cổng giao tiếp duy nhất với thế giới bên ngoài. Nginx đảm
+nhiệm các chức năng chấm dứt kết nối bảo mật, định tuyến yêu cầu theo
+kênh người dùng, cân bằng tải, giới hạn tần suất truy cập và chuyển tiếp
+giao thức WebSocket mà không làm gián đoạn luồng dữ liệu thời gian thực.
+
+\textbf{Tầng ứng dụng (Application Layer):} bao gồm các instance NestJS
+được tổ chức theo mô hình Backend-for-Frontend. Mỗi instance phục vụ
+riêng một kênh người dùng thông qua tập hợp các Controller chuyên biệt,
+thực hiện việc tiếp nhận yêu cầu, xác thực phiên làm việc, xác thực dữ
+liệu đầu vào và điều phối luồng xử lý xuống các tầng bên dưới. Việc tách
+biệt này cho phép tối ưu hóa cấu trúc phản hồi theo nhu cầu riêng của
+từng nền tảng mà không làm phức tạp hóa giao diện lập trình ứng dụng.
+
+\textbf{Tầng dịch vụ (Service Layer)}: tập trung toàn bộ quy tắc nghiệp
+vụ cốt lõi của hệ thống quản lý bệnh viện. Các Service tại tầng này được
+triển khai dưới dạng các đơn vị xử lý thuần túy, không phụ thuộc vào cơ
+sở dữ liệu hay giao thức truyền tải. Tại đây diễn ra các quyết định
+nghiệp vụ quan trọng như kiểm tra ràng buộc lịch khám, tính toán quyền
+truy cập hồ sơ, sinh đơn thuốc điện tử và xử lý quy trình thanh toán,
+đảm bảo tính nhất quán và khả năng kiểm thử độc lập.
+
+\textbf{Tầng truy cập dữ liệu (Data Access Layer):} được xây dựng trên
+Prisma Client kết hợp với Repository Pattern. Tầng này đóng vai trò
+trung gian duy nhất giữa logic nghiệp vụ và các hệ cơ sở dữ liệu, cung
+cấp giao diện thống nhất và an toàn kiểu dữ liệu cho mọi thao tác đọc
+ghi. Nhờ cơ chế sinh mã tự động, mọi thay đổi trong mô hình dữ liệu đều
+được phản ánh tức thì trên toàn hệ thống mà không yêu cầu chỉnh sửa thủ
+công.
+
+\textbf{Tầng lưu trữ (Persistence Layer)}: sử dụng đồng thời ba hệ quản
+trị cơ sở dữ liệu phù hợp với đặc thù dữ liệu. PostgreSQL đảm bảo tính
+toàn vẹn và nhất quán cho các thực thể có quan hệ phức tạp; MongoDB phục
+vụ lưu trữ tài liệu phi cấu trúc và nhật ký hoạt động với hiệu năng ghi
+cao; Redis được sử dụng làm bộ nhớ đệm và cơ chế lưu trữ phiên thời gian
+thực, hỗ trợ các tính năng thông báo tức thì và trò chuyện trực tuyến.
+
+\textbf{Tầng hạ tầng (Infrastructure Layer):} bao gồm tập hợp các dịch
+vụ bên thứ ba mà hệ thống tích hợp. Các dịch vụ này bao gồm nền tảng lưu
+trữ đối tượng trên Supabase Storage và DigitalOcean Spaces, cổng thanh
+toán PayOS và hệ thống email giao dịch Resend. Tất cả đều được đóng gói
+dưới dạng các Provider có giao diện thống nhất, cho phép thay đổi nhà
+cung cấp mà không ảnh hưởng đến các tầng nghiệp vụ phía trên.
+
+\subsection{Hệ thống chẩn đoán
+bệnh}\label{hux1ec7-thux1ed1ng-chux1ea9n-ux111ouxe1n-bux1ec7nh}
+
+\subsubsection{TF-IDF}\label{tf-idf}
+
+Trọng số TF-IDF mô hình hoá mức độ ``thông tin'' của n-gram bằng cách
+kết hợp cường độ xuất hiện tại tài liệu với độ hiếm trên toàn bộ tập. Để
+giảm thiên lệch theo độ dài và ổn định số, dùng TF dưới tuyến tính và
+chuẩn hoá \(L_{2}\)sau cùng. Cho thuật ngữ \(t\ \)trong tài liệu \(d\),
+với \(N\) là số tài liệu huấn luyện và \(df(t)\)là số tài liệu chứa
+\(t\):
+
+\[{idf(t) = \log(\frac{1 + N}{1 + df(t)}) + 1
+}{tfidf(t,d) = {tf}'(t,d) \cdot idf(t)
+}{{\widehat{\mathbf{x}}}_{d} = \frac{\mathbf{x}_{d}}{\parallel \mathbf{x}_{d} \parallel_{2}}}\]
+
+Trong thiết lập dự đoán ICD từ discharge note, biểu diễn TF-IDF thưa
+(vocabulary lớn) được ghép với thuộc tính tuổi (chuẩn hoá) và giới tính
+(one-hot) để tạo biểu diễn đầu vào thống nhất cho các bộ phân loại nhị
+phân ở các bước sau.
+
+\subsubsection{One-vs-Rest (OvR)
+reduction}\label{one-vs-rest-ovr-reduction}
+
+Chiến lược One-Vs-Rest (OvR) ánh xạ bài toán đa nhãn thành tập các bài
+toán nhị phân độc lập, mỗi nhãn \(k\)đi kèm một bộ phân loại tuyến tính
+riêng. Với đầu vào \(\mathbf{x} \in \mathbb{R}^{F}\), điểm tuyến tính
+\(z_{k} = \mathbf{w}_{k}^{\top}\mathbf{x} + b_{k}\)được chuyển thành xác
+suất hậu nghiệm \(p_{k} = \sigma(z_{k}) = 1/(1 + e^{- z_{k}})\). Cấu
+trúc này cho phép huấn luyện song song theo nhãn và suy luận đồng thời
+bằng phép nhân ma trận
+\(\mathbf{p} = \sigma(\mathbf{Wx} + \mathbf{b})\), trong đó
+\(\mathbf{W} \in \mathbb{R}^{K \times F}\)và
+\(\mathbf{b} \in \mathbb{R}^{K}\). Việc chọn nhãn đầu ra có thể dựa trên
+ngưỡng
+\(\tau\)(\({\widehat{y}}_{k} = \mathbb{I}\lbrack p_{k} \geq \tau\rbrack\))
+hoặc Top-\(K'\) xác suất lớn nhất. Đối với bộ mã ICD quy mô lớn, OvR duy
+trì tính tuyến tính theo số nhãn, đồng thời giữ khả năng diễn giải: hệ
+số lớn theo chiều của một n-gram phản ánh tín hiệu mạnh cho nhãn tương
+ứng {[}3{]}.
+
+\subsubsection{SGD (Stochastic Gradient Descent)
+optimizer}\label{sgd-stochastic-gradient-descent-optimizer}
+
+Tham số của từng bộ phân loại OvR được ước lượng bằng hạ gradient ngẫu
+nhiên với mất mát logistic và chuẩn hoá \(L_{2}\), phù hợp dữ liệu thưa
+và khối lượng lớn. Với mẫu \((\mathbf{x}_{i},y_{i,k})\), xác suất
+
+\[{p_{i,k} = \sigma\left( \mathbf{w}_{\mathbf{k}}^{\top\mathbf{x}_{\mathbf{i}}} + b_{k} \right)\ 
+}{\sigma(z) = \frac{1}{1 + e^{- z}}.}\]
+
+và hàm mục tiêu
+
+\[\mathcal{L}_{\mathcal{k}}\left( \mathbf{w}_{\mathbf{k}},b_{k} \right) = \frac{1}{n}\sum_{i = 1}^{n}\left\lbrack - y_{i,k}\log p_{i,k} - \left( 1 - y_{i,k} \right)\log\left( 1 - p_{i,k} \right) \right\rbrack + \frac{\lambda}{2}\text{|}\mathbf{w}_{\mathbf{k}}\text{|}_{2}^{2}.\]
+
+trong đó \(\lambda > 0\)kiểm soát mức phạt để hạn chế quá khớp. Với
+minibatch \(B\), gradient được xấp xỉ
+
+\[g_{w_{k}} = \frac{1}{|B|}\sum_{i \in B}^{}\left( p_{i,k} - y_{i,k} \right)\, x_{i} + \lambda w_{k},\quad\]
+
+\[g_{b_{k}} = \frac{1}{|B|}\sum_{i \in B}^{}\left( p_{i,k} - y_{i,k} \right).
+\]
+
+và cập nhật
+
+\[\mathbf{w}_{k} \leftarrow \mathbf{w}_{k} - \alpha\text{ }g_{\mathbf{w}_{k}},b_{k} \leftarrow b_{k} - \alpha\text{ }g_{b_{k}},
+\]
+
+với tốc độ học \(\alpha\). Khi áp dụng cho discharge note, biểu diễn
+TF-IDF kết hợp thuộc tính tuổi/giới tính tạo điều kiện hội tụ ổn định
+của SGD, trong khi ma trận trọng số \(\mathbf{W}\) cho phép suy luận
+hàng loạt và giải thích tuyến tính mức đặc trưng {[}4{]}.
+
+\subsection{Công nghệ sử dụng trong hệ
+thống}\label{cuxf4ng-nghux1ec7-sux1eed-dux1ee5ng-trong-hux1ec7-thux1ed1ng}
+
+\begin{itemize}
+\item
+  \textbf{NextJS} được sử dụng để xây dựng giao diện web quản trị và đặt
+  lịch khám trực tuyến 24/7, tận dụng Server-Side Rendering (SSR) và
+  Static Site Generation (SSG) nhằm tối ưu tốc độ tải trang, cải thiện
+  SEO và đảm bảo trải nghiệm người dùng mượt mà trên mọi thiết bị. Tích
+  hợp API Routes giúp xử lý backend ngay trong frontend, giảm độ trễ và
+  đơn giản hóa triển khai.
+\item
+  \textbf{NestJS} xây dựng hệ thống backend trung tâm của Revita, quản
+  lý toàn bộ logic nghiệp vụ như lịch khám, hồ sơ bệnh nhân, ưu tiên
+  theo quy định pháp luật và thanh toán chuyển khoản. Kiến trúc modular
+  kết hợp Dependency Injection giúp dễ mở rộng, bảo trì; hỗ trợ
+  REST/GraphQL và kết nối an toàn với cơ sở dữ liệu PostgreSQL hoặc
+  MongoDB.
+\item
+  \textbf{React Native} phát triển ứng dụng di động cho bệnh nhân và bác
+  sĩ, cho phép đặt lịch, xem số thứ tự, nhận thông báo, tra cứu hồ sơ
+  trên cả iOS và Android từ một mã nguồn duy nhất. Tận dụng hot
+  reloading để cập nhật nhanh, truy cập native API như camera, GPS để hỗ
+  trợ chụp ảnh bệnh án hoặc định vị phòng khám.
+\item
+  \textbf{Electron} xây dựng ứng dụng desktop cho quầy lễ tân và kiosk
+  tự phục vụ, hiển thị số thứ tự theo thời gian thực, in phiếu khám,
+  quản lý thanh toán tại chỗ. Chạy độc lập trên Windows, macOS, Linux,
+  tích hợp trực tiếp với máy in, máy quét mã QR và hệ thống loa phát
+  thanh mà không cần trình duyệt.
+\item
+  \textbf{FastAPI} triển khai microservices AI, xử lý gợi ý chẩn đoán từ
+  ghi chú y khoa và chatbot hỗ trợ bệnh nhân. Tận dụng async kết hợp
+  Pydantic để xử lý hàng nghìn yêu cầu đồng thời với độ trễ thấp, tự
+  động sinh OpenAPI docs để tích hợp nhanh với frontend, phù hợp cho mô
+  hình NLP và ML trong môi trường sản xuất.
+\item
+  \textbf{Gemini 2.5 Flash} tích hợp làm lõi AI thông minh cho chatbot
+  tư vấn 24/7 và hệ thống gợi ý chẩn đoán đa phương thức. Phân tích văn
+  bản, hình ảnh bệnh án, âm thanh mô tả triệu chứng trong context 1M
+  token, đưa ra gợi ý chính xác, nhanh chóng; hỗ trợ suy luận nội bộ để
+  giải thích kết quả, đảm bảo độ tin cậy cao trong môi trường y tế thực
+  tế.
+\item
+  \textbf{PostgreSQL} được sử dụng làm cơ sở dữ liệu chính để quản lý
+  toàn bộ hệ thống nghiệp vụ lớn của Revita, bao gồm hồ sơ bệnh nhân,
+  lịch khám, thông tin bác sĩ, thanh toán và ưu tiên theo quy định pháp
+  luật. Với khả năng xử lý giao dịch phức tạp, hỗ trợ ACID và mở rộng
+  theo chiều dọc, PostgreSQL đảm bảo tính toàn vẹn dữ liệu và hiệu suất
+  ổn định trong môi trường phòng khám hoạt động liên tục với lưu lượng
+  cao.
+\item
+  \textbf{Redis} được triển khai như bộ nhớ đệm (cache) hiệu năng cao và
+  sử dụng Redis Streams để lưu trữ luồng sự kiện theo thời gian thực như
+  bốc số thứ tự, cập nhật hàng chờ, thông báo trạng thái khám. Nhờ tốc
+  độ truy xuất dưới mili giây và cơ chế pub/sub, Redis giúp hiển thị số
+  thứ tự tức thì trên kiosk, ứng dụng di động và quầy lễ tân, giảm tải
+  cho database chính và đảm bảo trải nghiệm mượt mà trong giờ cao điểm.
+\item
+  \textbf{MongoDB} được dùng để lưu trữ và quản lý dữ liệu thuốc với
+  khối lượng lớn, cấu trúc linh hoạt (tên thuốc, hoạt chất, liều lượng,
+  chỉ định, tương tác). Nhờ cơ chế lập chỉ mục mạnh mẽ và tìm kiếm
+  full-text, MongoDB tối ưu hóa tốc độ tra cứu thuốc theo nhiều tiêu
+  chí, hỗ trợ bác sĩ kê đơn nhanh chóng, chính xác và giảm thiểu sai sót
+  trong quy trình khám bệnh.
+\end{itemize}
+
+\subsection{Dataset MIMIC-IV}\label{dataset-mimic-iv}
+
+MIMIC-IV là một bộ dữ liệu hồ sơ y tế điện tử (EHR) mã nguồn mở, được
+phát triển bởi nhóm nghiên cứu tại Beth Israel Deaconess Medical Center
+(BIDMC) và MIT Laboratory for Computational Physiology vào năm 2020, như
+một bản cập nhật từ phiên bản MIMIC-III. Bộ dữ liệu này áp dụng kiến
+trúc modular với các module riêng biệt như hosp (dữ liệu bệnh viện), icu
+(dữ liệu đơn vị chăm sóc tích cực), và ed (dữ liệu cấp cứu), được tổ
+chức bằng các bảng SQL để nhấn mạnh nguồn gốc dữ liệu và hỗ trợ tích hợp
+linh hoạt giữa các nguồn khác nhau. Dữ liệu được thu thập từ hệ thống
+EHR tùy chỉnh, hệ thống thông tin ICU (MetaVision), và các nguồn bên
+ngoài, sau đó được biến đổi và khử nhận dạng theo quy định HIPAA. Chức
+năng chính của MIMIC-IV là cung cấp hơn 250.000 hồ sơ bệnh nhân từ năm
+2008-2019, bao gồm đo lường sinh lý, đơn thuốc, chẩn đoán, thủ thuật, và
+ghi chú lâm sàng, nhằm hỗ trợ nghiên cứu trong lĩnh vực thông tin lâm
+sàng, dịch tễ học, và học máy, đặc biệt trong phân tích chăm sóc bệnh
+nhân cấp cứu và ICU {[}1{]}.
+
+\begin{figure}
+\centering
+\includegraphics[width=2.75486in,height=1.79999in]{media/image2.png}
+\caption{Biểu đồ 1 - Phân bố độ tuổi nhập viện}
+\end{figure}
+
+Phân bố tuổi bệnh nhân trong MIMIC-IV có dạng đa đỉnh (multimodal), tập
+trung mạnh ở nhóm 50--80 tuổi, với đỉnh cao nhất tại \textasciitilde65
+tuổi -- phản ánh dân số bệnh nhân ICU chủ yếu là người trung niên và cao
+tuổi.
+
+\begin{figure}
+\centering
+\includegraphics[width=2.75477in,height=1.79893in]{media/image3.png}
+\caption{Biểu đồ 2 - Phân bố độ dài của các bệnh án y khoa}
+\end{figure}
+
+\includegraphics[width=2.625in,height=1.79868in]{media/image4.png}
+
+Trong MIMIC-IV, chỉ 100 mã ICD phổ biến nhất đã chiếm
+\textasciitilde65\% tổng số chẩn đoán, và 1.000 mã chiếm
+\textasciitilde90\%. Đường cong tăng nhanh ở đầu và chậm dần về sau thể
+hiện hiện tượng đuôi dài mạnh. Với Revita, việc tập trung huấn luyện
+trên top 200--500 mã đảm bảo độ chính xác cao cho phần lớn ca bệnh thực
+tế, đồng thời tối ưu tài nguyên khi triển khai hệ thống gợi ý chẩn đoán.
+
+\begin{figure}
+\centering
+\includegraphics[width=2.39246in,height=1.91608in]{media/image5.png}
+\caption{Biểu đồ 3 - Tỉ lệ giới tính của bệnh nhân}
+\end{figure}
+
+Trong MIMIC-IV, nữ giới chiếm 52.7\% (191.383 bệnh nhân) và nam giới
+chiếm 47.3\% (172.643 bệnh nhân) trong tổng số 364.026 bệnh nhân duy
+nhất. Tỷ lệ này cho thấy sự cân bằng tương đối giữa hai giới, với nữ
+giới nhỉnh hơn nhẹ -- phù hợp với đặc điểm dân số nhập viện ICU. Với
+Revita, hệ thống gợi ý chẩn đoán và quản lý hồ sơ được thiết kế không
+thiên vị giới tính, đảm bảo độ chính xác đồng đều trên cả hai nhóm bệnh
+nhân.
+
+\section{\texorpdfstring{Hệ thống quản lý quy trình khám chữa bệnh
+}{Hệ thống quản lý quy trình khám chữa bệnh }}\label{hux1ec7-thux1ed1ng-quux1ea3n-luxfd-quy-truxecnh-khuxe1m-chux1eefa-bux1ec7nh}
+
+\subsection{Quy trình khám chữa bệnh tại phòng
+khám}\label{quy-truxecnh-khuxe1m-chux1eefa-bux1ec7nh-tux1ea1i-phuxf2ng-khuxe1m}
+
+\textbf{Bước 1}: Bệnh nhân có thể đặt lịch khám trước sau đó đến phòng
+khám, nhập thông tin khám bệnh nếu đăng ký khám lần đầu, nếu đã từng đến
+khám tại bệnh viện thì bệnh nhân nhập mã hồ sơ khám/ số điện thoại hồ
+sơ/mã đặt lịch (nếu có) sau đó hệ thống sẽ phân phối bệnh nhân vào các
+quầy làm thủ tục khám với cơ chế xoay vòng có ưu tiên.
+
+\textbf{Bước 2}: Nhân viên quầy thủ tục nhấn gọi bệnh nhân đến quầy làm
+thủ tục, bệnh nhân quan sát thông tin của mình trên màn hình chờ để biết
+khi nào chuẩn bị đến làm thủ tục.
+
+\textbf{Bước 3}: Bệnh nhân sau khi làm thủ tục khám thì cầm theo phiếu
+chỉ định các dịch vụ đến quầy thu ngân nộp để thanh toán các phí dịch vụ
+theo yêu cầu. Nhân viên thu nhân nhận phiếu chỉ định và bắt đầu tạo hóa
+đơn thanh toán với các dịch vụ bệnh nhân muốn thực hiện . Có hai phương
+thức thanh toán là bằng tiền mặt (nhân viên thu ngân xác nhận thanh toán
+thành công khi nhận tiền) và thanh toán qua hình thức chuyển khoản (hệ
+thống tự động cập nhật thông tin và xuất hóa đơn khi bệnh nhân chuyển
+khoản thành công).
+
+\textbf{Bước 4}: Nếu bệnh nhân đặt lịch trước đó hoặc là yêu cầu chọn
+bác sĩ khi ở quầy thủ tục thì khi thanh toán thành công bệnh nhân sẽ
+được thêm vào hàng chờ của bác sĩ đó. Nếu không thì bệnh nhân sẽ đến
+trước khu vực khám và checkin tại các máy kiosk hoặc nhờ nhân viên ở tại
+quầy thủ tục (khu vực khám bệnh) để xác nhận vào khám, khi xác nhận xong
+thì hệ thống đưa bệnh nhân vào hàng chờ.
+
+\textbf{Bước 5}: Bác sĩ nhấn gọi bệnh nhân vào phòng khám theo thứ tự
+hàng chờ, sau khi vào khám thì bác sĩ tiến hành chẩn đoán, tạo bệnh án,
+đơn thuốc cho bệnh nhân. Nếu bác sĩ mong muốn bệnh nhân thực hiện thêm
+các dịch vụ cho mục đích khám chữa bệnh thì bác sĩ sẽ tạo phiếu chỉ định
+cho bệnh nhân thực hiện các dịch vụ đó, sau đó quay về bước 3.
+
+\textbf{Bước 6}: Khi đã hoàn thành các dịch vụ theo yêu cầu của bác sĩ
+thì bệnh nhân tiến hành quay lại khu vực khám để checkin chờ kết quả.
+
+\includegraphics[width=3.41797in,height=4.53754in]{media/image6.png}
+
+\subsection{Một số chức năng
+chính}\label{mux1ed9t-sux1ed1-chux1ee9c-nux103ng-chuxednh}
+
+Một số chức năng chính của hệ thống:
+
+\begin{itemize}
+\item
+  Đề xuất/Xác nhận lịch làm việc.
+\item
+  Đặt lịch hẹn khám bệnh
+\item
+  Lấy số thứ tự đến quầy thủ tục
+\item
+  Quản lý phiếu chỉ định, bệnh án, đơn thuốc
+\item
+  Hệ thống chatbot hỗ trợ bệnh nhân (Không hỗ trợ chẩn đoán, đơn thuốc,
+  \ldots{} các yếu tố có thể ảnh hưởng đến sức khỏe của bệnh nhân.
+\item
+  Hệ thống gợi ý các chẩn đoán dựa trên bệnh án của bệnh nhân (chỉ cho
+  các bác sĩ trong hệ thống sử dụng)
+\end{itemize}
+
+\includegraphics[width=3.49931in,height=3.08383in]{media/image7.png}
+
+\subsection{Sơ đồ triển khai hệ
+thống}\label{sux1a1-ux111ux1ed3-triux1ec3n-khai-hux1ec7-thux1ed1ng}
+
+\includegraphics[width=3.32632in,height=3.97639in]{media/image8.png}
+
+\section{TRIỂN KHAI}\label{triux1ec3n-khai}
+
+\subsection{Một số màn hình giao
+diện}\label{mux1ed9t-sux1ed1-muxe0n-huxecnh-giao-diux1ec7n}
+
+\begin{figure}
+\centering
+\includegraphics[width=2.74544in,height=1.77804in]{media/image9.png}
+\caption{Hình 2 Chuẩn đoán tự động dựa trên thông tin đề xuất}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=2.66667in,height=1.60114in]{media/image10.png}
+\caption{Hình 3 Tra cứu thông tin khám bệnh bằng chatbot AI}
+\end{figure}
+
+\subsection{Kết quả thực
+nghiệm}\label{kux1ebft-quux1ea3-thux1ef1c-nghiux1ec7m}
+
+Mô hình được huấn luyện theo hướng phân loại đa nhãn (multi-label) nhằm
+dự đoán các mã ICD bệnh lý dựa trên tóm tắt ra viện (discharge summary).
+Phương pháp: One-vs-Rest Logistic Regression.
+
+\begin{itemize}
+\item
+  Đặc trưng đầu vào: TF-IDF n-gram (1--2 từ) trên văn bản đã làm sạch.
+\item
+  Dữ liệu huấn luyện: \textasciitilde200 k hồ sơ MIMIC-IV.
+\item
+  Đầu ra: xác suất của từng mã ICD (≈ 2k nhãn)
+\item
+  Chiến lược đánh giá: top-K (1, 3, 5, 10)
+\item
+  Bảng 4.1 Kết quả định lượng
+\end{itemize}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1504}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0964}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0137}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2259}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Chỉ số}
+\end{minipage} &
+\multicolumn{2}{>{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1102} + 2\tabcolsep}}{%
+\begin{minipage}[b]{\linewidth}\centering
+\textbf{Kết quả}
+\end{minipage}} & \begin{minipage}[b]{\linewidth}\centering
+\textbf{Giải thích}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Tổng số ca kiểm tra & 50 &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2396} + 2\tabcolsep}@{}}{%
+Mẫu từ tập test} \\
+Hit@1 & 76\% &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2396} + 2\tabcolsep}@{}}{%
+76 \% ca có ít nhất 1 mã đúng ở vị trí đầu tiên} \\
+Hit@3 & 94\% &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2396} + 2\tabcolsep}@{}}{%
+94 \% ca có ít nhất 1 mã đúng trong 3 mã đầu} \\
+Hit@5 & 96\% &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2396} + 2\tabcolsep}@{}}{%
+96 \% ca có ít nhất 1 mã đúng trong top-5} \\
+Hit@10 & 98\% &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2396} + 2\tabcolsep}@{}}{%
+49/50 ca có ít nhất 1 mã đúng trong top-10} \\
+Trung bình số mã đúng / ca (avg hits @ 10) & 2.62 &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2396} + 2\tabcolsep}@{}}{%
+Mỗi ca dự đoán trúng trung bình \textasciitilde2.6 bệnh} \\
+Số ca dự đoán đúng hoàn toàn & 22/50 (44\%) &
+\multicolumn{2}{>{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2396} + 2\tabcolsep}@{}}{%
+Toàn bộ mã thật đều nằm trong top-10} \\
+\end{longtable}
+}
+
+\section{KẾT LUẬN}\label{kux1ebft-luux1eadn}
+
+Trong đồ án này, chúng tôi đã trình bày chi tiết quy trình xây dựng và
+triển khai hệ thống Revita -- một nền tảng hỗ trợ chẩn đoán y khoa trên
+cả web và di động. Hệ thống tích hợp các công nghệ hiện đại như NextJS,
+NestJS, Electron, React Native, FastAPI, Gemini, kết hợp với mô hình dự
+đoán bệnh được huấn luyện từ tập dữ liệu y khoa nổi tiếng MIMIC-IV. Nhờ
+đó, hệ thống cung cấp gợi ý bệnh lý chính xác, nhanh chóng dựa trên ghi
+chú bệnh án, tuổi và giới tính, hỗ trợ hiệu quả cho bác sĩ trong công
+tác sàng lọc và chẩn đoán ban đầu.
+
+Mặc dù đã đạt được những kết quả khả quan, hệ thống vẫn còn hạn chế lớn
+là chưa sử dụng dữ liệu thực tế từ chính người dùng để huấn luyện và cải
+thiện mô hình. Trong thời gian tới, nhóm sẽ tập trung:
+
+Thu thập và tích hợp dữ liệu nội sinh từ hệ thống Revita để tái huấn
+luyện mô hình định kỳ, nâng cao độ chính xác và phù hợp với thực tế lâm
+sàng tại Việt Nam.
+
+Cải thiện trải nghiệm người dùng: tối ưu giao diện, tăng tốc độ phản
+hồi, hỗ trợ đa ngôn ngữ và tích hợp voice-to-text cho ghi chú bệnh án.
+
+Nâng cấp mô hình dự đoán: thử nghiệm các mô hình ngôn ngữ y khoa chuyên
+biệt (như BioClinicalBERT), bổ sung xử lý phủ định và ngữ cảnh phức tạp.
+
+Mở rộng nền tảng: tích hợp với hệ thống bệnh viện (HIS), và triển khai
+thử nghiệm thực tế tại các cơ sở y tế.
+
+TÀI LIỆU THAM KHẢO
+
+{[}1{]} A. E. Johnson \emph{et al.}, ``MIMIC-IV, a freely accessible
+electronic health record dataset,'' \emph{Sci. Data}, vol. 10, no. 1, p.
+1, 2023.
+
+{[}2{]} C. D. Manning, P. Raghavan, and H. Schütze, ``Scoring, term
+weighting and the vector space model (Chap. 6),'' in \emph{Introduction
+to information retrieval}. Cambridge, U.K.: Cambridge Univ. Press, 2008,
+pp. 110--134.
+
+{[}3{]} V. Ashwinkumar, P. P. Arage, R. Jeya, and P. Sudhakaran,
+``One-vs-Rest vs. Voting Classifiers for Multi-Label Text
+Classification: An Empirical Study,'' in \emph{E3S Web of Conferences},
+vol. 491, p. 01014, 2024.
+
+{[}4{]} H. Robbins and S. Monro, ``A stochastic approximation method,''
+\emph{Ann. Math. Statist.}, pp. 400--407, 1951.
+
+\section{}\label{section}

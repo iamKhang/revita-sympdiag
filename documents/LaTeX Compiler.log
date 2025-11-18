@@ -1,0 +1,56 @@
+Rc files read:
+  NONE
+Latexmk: This is Latexmk, John Collins, 15 June 2025. Version 4.87.
+No existing .aux file, so I'll make a simple one, and require run of *latex.
+Latexmk: applying rule 'pdflatex'...
+Rule 'pdflatex':  Reasons for rerun
+Category 'other':
+  Rerun of 'pdflatex' forced or previously required:
+    Reason or flag: 'Initial setup'
+
+------------
+Run number 1 of rule 'pdflatex'
+------------
+------------
+Running 'pdflatex  -synctex=1 -interaction=nonstopmode -file-line-error -recorder -output-directory="/Users/lehoangkhang/Tài liệu/revita-sympdiag/documents"  "/Users/lehoangkhang/Tài liệu/revita-sympdiag/documents/main.tex"'
+------------
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(/Users/lehoangkhang/Tài liệu/revita-sympdiag/documents/main.tex
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+(/usr/local/texlive/2025basic/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2024/06/29 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2025basic/texmf-dist/tex/latex/base/size10.clo)) (/usr/local/texlive/2025basic/texmf-dist/tex/latex/xcolor/xcolor.sty (/usr/local/texlive/2025basic/texmf-dist/tex/latex/graphics-cfg/color.cfg) (/usr/local/texlive/2025basic/texmf-dist/tex/latex/graphics-def/pdftex.def) (/usr/local/texlive/2025basic/texmf-dist/tex/latex/graphics/mathcolor.ltx)) (/usr/local/texlive/2025basic/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2025basic/texmf-dist/tex/latex/amsmath/amstext.sty (/usr/local/texlive/2025basic/texmf-dist/tex/latex/amsmath/amsgen.sty)) (/usr/local/texlive/2025basic/texmf-dist/tex/latex/amsmath/amsbsy.sty) (/usr/local/texlive/2025basic/texmf-dist/tex/latex/amsmath/amsopn.sty)) (/usr/local/texlive/2025basic/texmf-dist/tex/latex/amsfonts/amssymb.sty (/usr/local/texlive/2025basic/texmf-dist/tex/latex/amsfonts/amsfonts.sty)) (/usr/local/texlive/2025basic/texmf-dist/tex/latex/fontspec/fontspec.sty (/usr/local/texlive/2025basic/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (/usr/local/texlive/2025basic/texmf-dist/tex/latex/l3kernel/expl3.sty (/usr/local/texlive/2025basic/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)))
+
+/usr/local/texlive/2025basic/texmf-dist/tex/latex/fontspec/fontspec.sty:101: Fatal Package fontspec Error: The fontspec package requires either XeTeX or
+(fontspec)                      LuaTeX.
+(fontspec)                      
+(fontspec)                      You must change your typesetting engine to,
+(fontspec)                      e.g., "xelatex" or "lualatex" instead of
+(fontspec)                      "latex" or "pdflatex".
+
+Type <return> to continue.
+ ...                                              
+                                                  
+l.101 \msg_fatal:nn {fontspec} {cannot-use-pdftex}
+                                                  
+
+Latexmk: Getting log file '/Users/lehoangkhang/Tài liệu/revita-sympdiag/documents/main.log'
+Latexmk: Examining '/Users/lehoangkhang/Tài liệu/revita-sympdiag/documents/main.fls'
+Latexmk: Examining '/Users/lehoangkhang/Tài liệu/revita-sympdiag/documents/main.log'
+Latexmk: Using bibtex to make bibliography file(s).
+Latexmk: Errors, so I did not complete making targets
+Collected error summary (may duplicate other messages):
+  pdflatex: Command for 'pdflatex' gave return code 1
+      Refer to '/Users/lehoangkhang/Tài liệu/revita-sympdiag/documents/main.log' and/or above output for details
+
+Latexmk: Sometimes, the -f option can be used to get latexmk
+  to try to force complete processing.
+  But normally, you will need to correct the file(s) that caused the
+  error, and then rerun latexmk.
+  In some cases, it is best to clean out generated files before rerunning
+  latexmk after you've corrected the files.

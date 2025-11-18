@@ -1,0 +1,114 @@
+<mxfile host="app.diagrams.net">
+    <diagram name="Sitemap Chức năng Hệ thống Phòng khám" id="sitemap">
+      <mxGraphModel dx="800" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169">
+        <root>
+          <mxCell id="0"/>
+          <mxCell id="1" parent="0"/>
+  
+          <!-- Trang chủ -->
+          <mxCell id="home" value="Trang chủ&#xa;(Login / Dashboard)" style="shape=folder;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#01579b;fontStyle=1;" vertex="1" parent="1">
+            <mxGeometry x="340" y="40" width="160" height="60" as="geometry"/>
+          </mxCell>
+  
+          <!-- Đăng ký -->
+          <mxCell id="register" value="Đăng ký tài khoản&#xa;(OTP)" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#e65100;" vertex="1" parent="1">
+            <mxGeometry x="540" y="40" width="140" height="60" as="geometry"/>
+          </mxCell>
+          <mxCell edge="1" source="home" target="register" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;">
+            <mxGeometry relative="1" as="geometry"/>
+          </mxCell>
+  
+          <!-- Role: Bệnh nhân -->
+          <mxCell id="patient" value="BỆNH NHÂN" style="shape=folder;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#4a148c;fontStyle=1;" vertex="1" parent="1">
+            <mxGeometry x="100" y="150" width="180" height="50" as="geometry"/>
+          </mxCell>
+          <mxCell value="Đặt lịch khám bệnh" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="80" y="220" width="130" height="40" as="geometry"/>
+          </mxCell>
+          <mxCell value="Quản lý lịch hẹn" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="80" y="270" width="130" height="40" as="geometry"/>
+          </mxCell>
+          <mxCell value="Quản lý hồ sơ bệnh nhân" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="80" y="320" width="130" height="40" as="geometry"/>
+          </mxCell>
+          <mxCell value="Xem lịch sử bệnh án" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="80" y="370" width="130" height="40" as="geometry"/>
+          </mxCell>
+          <mxCell value="Xem đơn thuốc" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="80" y="420" width="130" height="40" as="geometry"/>
+          </mxCell>
+          <mxCell value="Theo dõi chi phí" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="80" y="470" width="130" height="40" as="geometry"/>
+          </mxCell>
+  
+          <!-- Role: Bác sĩ -->
+          <mxCell id="doctor" value="BÁC SĨ" style="shape=folder;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#1b5e20;fontStyle=1;" vertex="1" parent="1">
+            <mxGeometry x="320" y="150" width="180" height="50" as="geometry"/>
+          </mxCell>
+          <mxCell value="Quản lý bệnh án điện tử" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="300" y="220" width="130" height="40" as="geometry"/>
+          </mxCell>
+          <mxCell value="Tạo đơn thuốc" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="300" y="270" width="130" height="40" as="geometry"/>
+          </mxCell>
+          <mxCell value="Quản lý lịch làm việc" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="300" y="320" width="130" height="40" as="geometry"/>
+          </mxCell>
+          <mxCell value="AI chẩn đoán" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#fff8e1;" vertex="1" parent="1">
+            <mxGeometry x="300" y="370" width="130" height="40" as="geometry"/>
+          </mxCell>
+  
+          <!-- Role: Lễ tân -->
+          <mxCell id="recep" value="NHÂN VIÊN TIẾP NHẬN" style="shape=folder;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#e65100;fontStyle=1;" vertex="1" parent="1">
+            <mxGeometry x="540" y="150" width="180" height="50" as="geometry"/>
+          </mxCell>
+          <mxCell value="Quản lý hàng chờ" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="520" y="220" width="130" height="40" as="geometry"/>
+          </mxCell>
+          <mxCell value="Quản lý quầy" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="520" y="270" width="130" height="40" as="geometry"/>
+          </mxCell>
+          <mxCell value="Quản lý người dùng" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="520" y="320" width="130" height="40" as="geometry"/>
+          </mxCell>
+  
+          <!-- Role: Admin -->
+          <mxCell id="admin" value="QUẢN TRỊ VIÊN" style="shape=folder;whiteSpace=wrap;html=1;fillColor=#ffebee;strokeColor=#b71c1c;fontStyle=1;" vertex="1" parent="1">
+            <mxGeometry x="100" y="550" width="180" height="50" as="geometry"/>
+          </mxCell>
+          <mxCell value="Quản lý lịch toàn hệ thống" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="80" y="620" width="140" height="40" as="geometry"/>
+          </mxCell>
+          <mxCell value="Quản lý người dùng" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="80" y="670" width="140" height="40" as="geometry"/>
+          </mxCell>
+          <mxCell value="Quản lý hóa đơn" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="80" y="720" width="140" height="40" as="geometry"/>
+          </mxCell>
+          <mxCell value="Quản lý bài viết" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="80" y="770" width="140" height="40" as="geometry"/>
+          </mxCell>
+          <mxCell value="Thống kê &amp; báo cáo" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="80" y="820" width="140" height="40" as="geometry"/>
+          </mxCell>
+  
+          <!-- Chung -->
+          <mxCell value="CHUNG CHO TẤT CẢ" style="shape=folder;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;" vertex="1" parent="1">
+            <mxGeometry x="340" y="550" width="180" height="50" as="geometry"/>
+          </mxCell>
+          <mxCell value="Chatbot AI" style="shape=rectangle;whiteSpace=wrap;html=1;fillColor=#e0f7fa;strokeColor=#00acc1;" vertex="1" parent="1">
+            <mxGeometry x="320" y="620" width="130" height="40" as="geometry"/>
+          </mxCell>
+          <mxCell value="Hồ sơ cá nhân" style="shape=rectangle;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+            <mxGeometry x="320" y="670" width="130" height="40" as="geometry"/>
+          </mxCell>
+  
+          <!-- Kết nối từ Home -->
+          <mxCell edge="1" source="home" target="patient" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;"/>
+          <mxCell edge="1" source="home" target="doctor" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;"/>
+          <mxCell edge="1" source="home" target="recep" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;"/>
+          <mxCell edge="1" source="home" target="admin" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;"/>
+        </root>
+      </mxGraphModel>
+    </diagram>
+</mxfile>
