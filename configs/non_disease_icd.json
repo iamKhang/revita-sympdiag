@@ -1,0 +1,40 @@
+{
+    "name": "Non-disease / social / screening ICD codes in MIMIC-IV + manual exclude",
+    "version": "2025.11",
+    "description": "Danh sách ICD (9 & 10) KHÔNG được coi là bệnh lý thực sự – dùng để filter trước khi tính comorbidity, mortality prediction, LOS, v.v.",
+    "icd10_prefixes": [
+      "Z",
+      "F10", "F11", "F12", "F13", "F14", "F15", "F16", "F17", "F18", "F19",
+      "F32", "F33", "F34", "F38", "F39",
+      "F40", "F41", "F42", "F43", "F48",
+      "F50", "F51", "F52", "F53", "F54",
+      "F60", "F61", "F62", "F63", "F64", "F65", "F66", "F68", "F69",
+      "F70", "F71", "F72", "F73", "F78", "F79",
+      "F80", "F81", "F82", "F83", "F84", "F88", "F89",
+      "F90", "F91", "F92", "F93", "F94", "F95", "F98", "F99"
+    ],
+    "icd9_prefixes": [
+      "V",
+      "E"
+    ],
+    "manual_exclude": {
+      "icd10": [
+        "R69",
+        "U071",
+        "U09",
+        "T36", "T37", "T38", "T39", "T40", "T41", "T42", "T43", "T44", "T45", "T46", "T47", "T48", "T49", "T50",
+        "S",
+        "T"
+      ],
+      "icd9": [
+        "305.1",
+        "799.9",
+        "V15.82",
+        "E849"
+      ]
+    },
+    "exceptions_to_keep": {
+      "icd10": [],
+      "icd9": []
+    }
+  }
