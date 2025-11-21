@@ -125,7 +125,7 @@ async def predict_disease(patient: PatientInfo):
     combined_text = f"Age: {patient.age}, Gender: {patient.gender}. {patient.notes}"
     
     # Get predictions
-    predictions = predict_topk([combined_text], K=5)[0]
+    predictions = predict_topk([combined_text], K=10)[0]
     
     # Format response
     disease_predictions = []

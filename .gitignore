@@ -16,6 +16,7 @@ data/mimiciv_subset/discharge.csv
 data/mimiciv_subset/discharge.csv.gz
 data/mimiciv_subset/discharge_full.csv.gz
 data/proc/train_unified.parquet
+data/mimic-iv-lite/discharge.csv
 
 models/
 
