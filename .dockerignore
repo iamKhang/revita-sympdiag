@@ -1,14 +1,8 @@
-# Loại bỏ toàn bộ data, trừ file ICD cần giữ lại
-data/*
-!data/mimiciv/
-data/mimiciv/*
-!data/mimiciv/3.1/
-data/mimiciv/3.1/*
-!data/mimiciv/3.1/hosp/
-data/mimiciv/3.1/hosp/*
-!data/mimiciv/3.1/hosp/d_icd_diagnoses.csv.gz
+# Loại bỏ data và models (sẽ mount từ volume)
+data/
+models/
 
-
+# Loại bỏ các file không cần thiết
 notebooks/
 __pycache__/
 *.pyc
@@ -17,7 +11,17 @@ __pycache__/
 *.log
 *.csv
 *.ipynb
+*.parquet
 .DS_Store
 .git/
 .gitignore
 venv/
+documents/
+*.pdf
+*.tex
+*.aux
+*.fdb_latexmk
+*.fls
+texput.log
+postman_collection.json
+build.sh

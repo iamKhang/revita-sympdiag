@@ -20,15 +20,29 @@ app.add_middleware(
     allow_headers=["*"],  # Cho phép mọi header
 )
 
+# Lấy môi trường từ biến môi trường
+ENVIRONMENT = os.getenv("ENVIRONMENT", "development").lower()
 
 # Load model and data
 def load_model():
-    model_path = os.path.join(os.path.dirname(__file__), "..", "models", "ovr_sgd_tfidf.joblib")
+    if ENVIRONMENT == "production":
+        # Production: load từ absolute path (mount từ volume)
+        model_path = "/app/models/ovr_sgd_tfidf.joblib"
+    else:
+        # Development: load từ relative path
+        model_path = os.path.join(os.path.dirname(__file__), "..", "models", "ovr_sgd_tfidf.joblib")
+    
     bundle = joblib.load(model_path)
     return bundle
 
 def load_icd_mapping():
-    data_path = os.path.join(os.path.dirname(__file__), "..", "data", "mimiciv", "3.1", "hosp", "d_icd_diagnoses.csv.gz")
+    if ENVIRONMENT == "production":
+        # Production: load từ absolute path (mount từ volume)
+        data_path = "/app/models/d_icd_diagnoses.csv.gz"
+    else:
+        # Development: load từ relative path
+        data_path = os.path.join(os.path.dirname(__file__), "..", "data", "mimiciv", "3.1", "hosp", "d_icd_diagnoses.csv.gz")
+    
     d = pd.read_csv(data_path, compression="gzip", usecols=["icd_code","icd_version","long_title"])
     title_map = {(int(v), c.strip()): lt for c, v, lt in zip(d.icd_code, d.icd_version, d.long_title)}
     return title_map
