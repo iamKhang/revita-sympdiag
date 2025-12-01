@@ -80,15 +80,15 @@ Hệ thống Revita được thiết kế dựa trên kiến trúc phân tầng 
 
 \textbf{Tầng giao diện người dùng (Client Layer):} bao gồm ba ứng dụng độc lập về nền tảng nhưng thống nhất về trải nghiệm người dùng. Ứng dụng web được xây dựng trên Next.js với kiến trúc App Router hiện đại \cite{b4}; ứng dụng di động được phát triển bằng React Native nhằm tối ưu hiệu năng trên cả hai hệ điều hành chính \cite{b5}; ứng dụng desktop được đóng gói bằng Electron để đáp ứng nhu cầu xử lý tác vụ nặng tại các phòng khám. Các ứng dụng này chỉ chịu trách nhiệm hiển thị dữ liệu và thu thập tương tác người dùng, không chứa bất kỳ logic nghiệp vụ nào.
 
-\textbf{Tầng trình diễn (Presentation Layer)}: được thực hiện bởi Nginx đóng vai trò cổng giao tiếp duy nhất với thế giới bên ngoài \cite{b6}. Nginx đảm nhiệm các chức năng chấm dứt kết nối bảo mật, định tuyến yêu cầu theo kênh người dùng, cân bằng tải, giới hạn tần suất truy cập và chuyển tiếp giao thức WebSocket mà không làm gián đoạn luồng dữ liệu thời gian thực.
+\textbf{Tầng trình diễn (Presentation Layer)}: được thực hiện bởi Nginx đóng vai trò cổng giao tiếp duy nhất với thế giới bên ngoài \cite{b6}. Nginx đảm nhiệm các chức năng chấm dứt kết nối bảo mật, định tuyến yêu cầu theo kênh người dùng, cân bằng tải, giới hạn tần suất truy cập và chuyển tiếp giao thức WebSocket mà không làm gián đoạn luồng dữ liệu thời gian thực, trong quá trình triển khai thì Nginx của hệ thống được Coolify tích hợp và quản lý tự động.
 
-\textbf{Tầng ứng dụng (Application Layer):} bao gồm các instance NestJS được tổ chức theo mô hình Backend-for-Frontend \cite{b7}. Mỗi instance phục vụ riêng một kênh người dùng thông qua tập hợp các Controller chuyên biệt, thực hiện việc tiếp nhận yêu cầu, xác thực phiên làm việc, xác thực dữ liệu đầu vào và điều phối luồng xử lý xuống các tầng bên dưới. Việc tách biệt này cho phép tối ưu hóa cấu trúc phản hồi theo nhu cầu riêng của từng nền tảng mà không làm phức tạp hóa giao diện lập trình ứng dụng.
+\textbf{Tầng ứng dụng (Application Layer):} bao gồm các instance NestJS được tổ chức theo mô hình Backend-for-Frontend \cite{b7}. Mỗi instance phục vụ riêng một kênh người dùng thông qua tập hợp các Controller chuyên biệt, thực hiện việc tiếp nhận yêu cầu, xác thực phiên làm việc, xác thực dữ liệu đầu vào và điều phối luồng xử lý xuống các tầng bên dưới. Việc tách biệt này cho phép tối ưu hóa cấu trúc phản hồi theo nhu cầu riêng của từng nền tảng mà không làm phức tạp hóa giao diện lập trình ứng dụng. Bên cạnh đó tầng này còn chứa hệ thống gợi ý chẩn đoán được xây dựng bằng FastAPI.
 
-\textbf{Tầng dịch vụ (Service Layer)}: tập trung toàn bộ quy tắc nghiệp vụ cốt lõi của hệ thống quản lý bệnh viện. Các Service tại tầng này được triển khai dưới dạng các đơn vị xử lý thuần túy, không phụ thuộc vào cơ sở dữ liệu hay giao thức truyền tải. Tại đây diễn ra các quyết định nghiệp vụ quan trọng như kiểm tra ràng buộc lịch khám, tính toán quyền truy cập hồ sơ, sinh đơn thuốc điện tử và xử lý quy trình thanh toán, đảm bảo tính nhất quán và khả năng kiểm thử độc lập.
+\textbf{Tầng dịch vụ (Service Layer)}: tập trung toàn bộ quy tắc nghiệp vụ cốt lõi của hệ thống quản lý bệnh viện. Các Service tại tầng này được triển khai dưới dạng các đơn vị xử lý thuần túy, không phụ thuộc vào cơ sở dữ liệu hay giao thức truyền tải. Tại đây diễn ra các quyết định nghiệp vụ quan trọng như kiểm tra ràng buộc lịch khám, tính toán độ ưu tiên khi phân phối bệnh nhân vào các quầy thủ tục, các phòng khám/buồng khám phù hợp, xử lý thanh toán đa phương thức (tiền mặt/chuyển khoản), mã hóa/giải mã thông tin bệnh án khi lưu trữ/đọc ra, đảm bảo tính nhất quán và khả năng kiểm thử độc lập.
 
 \textbf{Tầng truy cập dữ liệu (Data Access Layer):} được xây dựng trên Prisma Client kết hợp với Repository Pattern. Tầng này đóng vai trò trung gian duy nhất giữa logic nghiệp vụ và các hệ cơ sở dữ liệu, cung cấp giao diện thống nhất và an toàn kiểu dữ liệu cho mọi thao tác đọc ghi. Nhờ cơ chế sinh mã tự động, mọi thay đổi trong mô hình dữ liệu đều được phản ánh tức thì trên toàn hệ thống mà không yêu cầu chỉnh sửa thủ công.
 
-\textbf{Tầng lưu trữ (Persistence Layer)}: sử dụng đồng thời ba hệ quản trị cơ sở dữ liệu phù hợp với đặc thù dữ liệu. PostgreSQL đảm bảo tính toàn vẹn và nhất quán cho các thực thể có quan hệ phức tạp; MongoDB phục vụ lưu trữ tài liệu phi cấu trúc và nhật ký hoạt động với hiệu năng ghi cao; Redis được sử dụng làm bộ nhớ đệm và cơ chế lưu trữ phiên thời gian thực, hỗ trợ các tính năng thông báo tức thì và trò chuyện trực tuyến.
+\textbf{Tầng lưu trữ (Persistence Layer)}: sử dụng đồng thời ba hệ quản trị cơ sở dữ liệu phù hợp với đặc thù dữ liệu. PostgreSQL đảm bảo tính toàn vẹn và nhất quán cho các thực thể có quan hệ phức tạp phù hợp cho các hệ thống lưu trữ nhiều dữ liệu phức tạp và cần mối quan hệ chặt chẽ đặt biệt trong lĩnh vực y tế; MongoDB phục vụ lưu trữ tài liệu phi cấu trúc ở đây là dữ liệu về thuốc được lấy về từ OpenFDA \cite{b25}, vì lượng dữ liệu về dược này rất lớn, có cấu trúc đa dạng nên được lưu trữ trong MongoDB để giảm thời gian backup trên cơ sở dữ liệu chính cũng như tận dụng MongoDB để tối ưu hóa cơ chế tìm kiếm thuốc; Redis được sử dụng làm bộ nhớ đệm và sử dụng Redis Stream (đóng vai trò như các message queue) để xử lý các yêu cầu đồng thời với độ trễ thấp, nhận và phát các sự kiện khi người dùng bốc số vào các quầy thủ tục/phòng khám.
 
 \subsection{Hệ thống chẩn đoán bệnh}
 
@@ -168,11 +168,13 @@ Quy trình huấn luyện được triển khai bằng hệ sinh thái Scikit-le
 \begin{itemize}
 \item \textbf{Chuẩn bị dữ liệu}: nạp bộ hồ sơ thống nhất, san phẳng danh sách ICD và chuẩn hoá nội dung ghi chú (cắt chiều dài, loại bỏ ký tự dư thừa) trước khi tạo trường \texttt{text\_clean}.
 \item \textbf{Chọn nhãn}: sử dụng bảng tần suất đã tiền xử lý (nếu có) hoặc thống kê trực tiếp từ dữ liệu để xây dựng tập nhãn mục tiêu, chỉ giữ các mã có mức xuất hiện đủ lớn nhằm bảo đảm tính ổn định khi huấn luyện.
-\item \textbf{Chia dữ liệu}: áp dụng chia nhóm theo \texttt{subject\_id} để tránh rò rỉ bệnh nhân, hình thành ba tập train/validation/test với tỷ lệ cân đối cho mọi giai đoạn.
+\item \textbf{Chia dữ liệu}: dữ liệu được chia thành ba tập độc lập cho train/validation/test. Quá trình chia được thực hiện theo hai bước: đầu tiên tách tập test và giữ nguyên trong suốt quá trình huấn luyện; sau đó từ phần còn lại, tách thêm tập validation. Việc chia dữ liệu được thực hiện theo \texttt{subject\_id} sử dụng \texttt{GroupShuffleSplit} thay vì chia ngẫu nhiên theo từng record, nhằm đảm bảo tất cả các lần nhập viện của cùng một bệnh nhân chỉ xuất hiện trong một tập duy nhất. Cách tiếp cận này tránh hiện tượng rò rỉ dữ liệu (data leakage) khi cùng một bệnh nhân xuất hiện ở cả tập huấn luyện và tập kiểm tra, đồng thời phản ánh đúng mục tiêu thực tế của hệ thống là dự đoán cho các bệnh nhân hoàn toàn mới chưa từng xuất hiện trong dữ liệu huấn luyện. Tập validation được sử dụng để điều chỉnh siêu tham số và đánh giá hiệu năng trong quá trình huấn luyện, trong khi tập test chỉ được sử dụng một lần duy nhất ở giai đoạn đánh giá cuối cùng để đảm bảo tính khách quan.
 \item \textbf{Vector hoá}: áp dụng \texttt{TfidfVectorizer} với cấu hình \(n\)-gram từ đơn đến song ngữ, sử dụng sublinear TF, chuẩn hoá \(L_{2}\) và giới hạn kích thước từ vựng để kiểm soát bộ nhớ.
 \item \textbf{Mã hoá nhãn}: \texttt{MultiLabelBinarizer} định nghĩa thứ tự lớp thống nhất; các nhãn quá hiếm được tự động loại bỏ khỏi huấn luyện nhằm tránh cảnh báo trong quá trình dừng sớm.
 \item \textbf{Huấn luyện}: \texttt{OneVsRestClassifier} bao bọc \texttt{SGDClassifier} với hàm mất mát logistic, regularization \(L_{2}\) và cơ chế early stopping. Sau khi hội tụ, trọng số được chuyển về \texttt{float32} để tiết kiệm dung lượng.
-\item \textbf{Đóng gói và suy luận}: mô hình, vectorizer và bộ mã hoá nhãn được lưu thành một gói duy nhất. Hàm tiện ích \texttt{predict\_topk} nhận danh sách ghi chú, biến đổi qua pipeline và trả về các nhãn xác suất cao nhất để phục vụ đánh giá cũng như xuất báo cáo.
+\item \textbf{Đóng gói}: sau khi huấn luyện hoàn tất, toàn bộ các thành phần cần thiết cho suy luận được đóng gói thành một file duy nhất sử dụng \texttt{joblib}, bao gồm: bộ phân loại \texttt{OneVsRestClassifier} đã được huấn luyện, vectorizer từ vựng (\texttt{word\_vec}), vectorizer ký tự tùy chọn (\texttt{char\_vec}), bộ mã hoá nhãn đa lớp (\texttt{MultiLabelBinarizer}) để ánh xạ giữa mã ICD và chỉ số lớp, cùng với các tham số cấu hình. Để tối ưu dung lượng lưu trữ, tất cả các trọng số của mô hình được chuyển đổi sang kiểu dữ liệu \texttt{float32} trước khi lưu. File đóng gói này cho phép triển khai mô hình một cách độc lập mà không cần tái huấn luyện, đảm bảo tính nhất quán giữa môi trường phát triển và sản xuất.
+
+\item \textbf{Suy luận}: quy trình dự đoán được thực hiện qua các bước tuần tự. Đầu tiên, hệ thống nhận thông tin đầu vào bao gồm tuổi, giới tính và ghi chú bệnh án của bệnh nhân. Tiếp theo, văn bản được vector hoá bằng \texttt{TfidfVectorizer} đã được huấn luyện trước đó, tạo ra biểu diễn TF-IDF tương ứng. Nếu có vectorizer ký tự, các đặc trưng ký tự được ghép nối với đặc trưng từ vựng để tạo vector đặc trưng cuối cùng. Mô hình \texttt{OneVsRestClassifier} tính toán xác suất cho từng mã ICD thông qua phương thức \texttt{predict\_proba}, sau đó các xác suất được sắp xếp theo thứ tự giảm dần và chọn top-K mã có xác suất cao nhất. Cuối cùng, hệ thống ánh xạ các mã ICD sang tên bệnh tương ứng từ bảng tra cứu và trả về danh sách các chẩn đoán kèm theo xác suất dự đoán cho bác sĩ tham khảo.
 \end{itemize}
 
 \subsection{Công nghệ sử dụng trong hệ thống}
@@ -183,8 +185,8 @@ Quy trình huấn luyện được triển khai bằng hệ sinh thái Scikit-le
 \item \textbf{React Native} phát triển ứng dụng di động cho bệnh nhân và bác sĩ, cho phép đặt lịch, nhận thông báo, tra cứu hồ sơ trên cả iOS và Android từ một mã nguồn duy nhất \cite{b5}.
 \item \textbf{Electron} xây dựng ứng dụng desktop cho các màn hình chờ và kiosk tự phục vụ, hiển thị số thứ tự theo thời gian thực \cite{b3}.
 \item \textbf{Docker} chuẩn hóa môi trường triển khai dịch vụ, bảo đảm tính nhất quán giữa giai đoạn phát triển và vận hành \cite{b14}.
-\item \textbf{FastAPI} triển khai microservices AI, xử lý gợi ý chẩn đoán từ ghi chú y khoa và chatbot hỗ trợ bệnh nhân.
-\item \textbf{Gemini 2.5 Flash} tích hợp làm lõi AI thông minh cho chatbot tư vấn 24/7 hỗ trợ bệnh nhân khi đến khám tại phòng khám.
+\item \textbf{FastAPI} triển khai microservices AI, xử lý gợi ý chẩn đoán từ ghi chú y khoa và chatbot hỗ trợ bệnh nhân \cite{b21}.
+\item \textbf{Gemini 2.5 Flash} tích hợp làm lõi AI thông minh cho chatbot tư vấn 24/7 hỗ trợ bệnh nhân khi đến khám tại phòng khám \cite{b22}.
 \item \textbf{PostgreSQL} được sử dụng làm cơ sở dữ liệu chính để quản lý toàn bộ hệ thống nghiệp vụ lớn của Revita \cite{b15}.
 \item \textbf{Redis} được triển khai như bộ nhớ đệm (cache) hiệu năng cao và sử dụng Redis Streams để lưu trữ luồng sự kiện theo thời gian thực \cite{b16}.
 \item \textbf{MongoDB} được dùng để lưu trữ và quản lý dữ liệu thuốc với khối lượng lớn, cấu trúc linh hoạt \cite{b17}.
@@ -235,7 +237,7 @@ Trong MIMIC-IV, nữ giới chiếm 52.7\% (191.383 bệnh nhân) và nam giới
 
 \textbf{Bước 2}: Nhân viên quầy thủ tục nhấn gọi bệnh nhân đến quầy làm thủ tục, bệnh nhân quan sát thông tin của mình trên màn hình chờ để biết khi nào chuẩn bị đến làm thủ tục.
 
-\textbf{Bước 3}: Bệnh nhân sau khi làm thủ tục khám thì cầm theo phiếu chỉ định các dịch vụ đến quầy thu ngân nộp để thanh toán các phí dịch vụ theo yêu cầu. Nhân viên thu nhân nhận phiếu chỉ định và bắt đầu tạo hóa đơn thanh toán với các dịch vụ bệnh nhân muốn thực hiện. Có hai phương thức thanh toán là bằng tiền mặt (nhân viên thu ngân xác nhận thanh toán thành công khi nhận tiền) và thanh toán qua hình thức chuyển khoản (hệ thống tự động cập nhật thông tin và xuất hóa đơn khi bệnh nhân chuyển khoản thành công).
+\textbf{Bước 3}: Bệnh nhân sau khi làm thủ tục khám thì cầm theo phiếu chỉ định các dịch vụ đến quầy thu ngân nộp để thanh toán các phí dịch vụ theo yêu cầu. Nhân viên thu nhân nhận phiếu chỉ định và bắt đầu tạo hóa đơn thanh toán với các dịch vụ bệnh nhân muốn thực hiện. Có hai phương thức thanh toán là bằng tiền mặt (nhân viên thu ngân xác nhận thanh toán thành công khi nhận tiền) và thanh toán qua hình thức chuyển khoản nhân viên tạo mã chuyển khoản tương ứng với hóa đơn và đưa mã chuyển khoản cho bệnh nhân, bệnh nhân thực hiện chuyển khoản (thông qua tài khoản ngân hàng hoặc tài khoản ví điện tử) khi chuyển khoản thành công thì hệ thống tự động cập nhật thông tin và xuất hóa đơn tự động.
 
 \textbf{Bước 4}: Nếu bệnh nhân đặt lịch trước đó hoặc là yêu cầu chọn bác sĩ khi ở quầy thủ tục thì khi thanh toán thành công bệnh nhân sẽ được thêm vào hàng chờ của bác sĩ đó. Nếu không thì bệnh nhân sẽ đến trước khu vực khám và checkin tại các máy kiosk hoặc nhờ nhân viên ở tại quầy thủ tục (khu vực khám bệnh) để xác nhận vào khám, khi xác nhận xong thì hệ thống đưa bệnh nhân vào hàng chờ.
 
@@ -269,9 +271,9 @@ Cơ sở dữ liệu bao gồm PostgreSQL (dữ liệu cấu trúc), MongoDB (d�
 Hệ thống tích hợp nhiều dịch vụ bên thứ ba:
 \begin{itemize}
 \item Gemini-2.5-Flash cung cấp gợi ý AI
-\item Resend gửi email thông báo
+\item Resend gửi email thông báo \cite{b24}
 \item Supabase lưu trữ ảnh, tài liệu
-\item AWS SNS gửi mã xác thực OTP qua SMS
+\item AWS SNS gửi mã xác thực OTP qua SMS \cite{b23}
 \item PayOS xử lý thanh toán trực tuyến \cite{b9}
 \item TinyMCE hỗ trợ soạn thảo văn bản phong phú
 \end{itemize}
@@ -304,7 +306,7 @@ Mô hình được huấn luyện theo hướng phân loại đa nhãn (multi-la
 
 \begin{itemize}
 \item Đặc trưng đầu vào: TF-IDF n-gram (1--2 từ) trên văn bản đã làm sạch.
-\item Dữ liệu huấn luyện: $\sim$200 k hồ sơ MIMIC-IV.
+\item Dữ liệu huấn luyện: $\sim$200 k hồ sơ MIMIC-IV được chia thành ba tập với tỷ lệ 70\%/15\%/15\% cho train/validation/test. Việc chia dữ liệu được thực hiện theo \texttt{subject\_id} để đảm bảo không có bệnh nhân nào xuất hiện ở nhiều tập khác nhau, tránh hiện tượng rò rỉ dữ liệu.
 \item Đầu ra: xác suất của từng mã ICD ($\approx$ 2k nhãn)
 \item Chiến lược đánh giá: top-K (1, 3, 5, 10)
 \end{itemize}
@@ -337,9 +339,11 @@ Số ca dự đoán đúng hoàn toàn & 22/50 (44\%) & Toàn bộ mã thật đ
 
 \section{KẾT LUẬN}
 
-Trong đồ án này, chúng tôi đã trình bày chi tiết quy trình xây dựng và triển khai hệ thống Revita -- một nền tảng hỗ trợ chẩn đoán y khoa trên cả web và di động. Hệ thống tích hợp các công nghệ hiện đại như NextJS, NestJS, Electron, React Native, FastAPI, Gemini, kết hợp với mô hình dự đoán bệnh được huấn luyện từ tập dữ liệu y khoa nổi tiếng MIMIC-IV. Nhờ đó, hệ thống cung cấp gợi ý bệnh lý chính xác, nhanh chóng dựa trên ghi chú bệnh án, tuổi và giới tính, hỗ trợ hiệu quả cho bác sĩ trong công tác sàng lọc và chẩn đoán ban đầu.
+Trong bài báo này, chúng tôi đã trình bày chi tiết quy trình xây dựng và triển khai hệ thống quản lý quy trình khám chữa bệnh tại các phòng khám đa khoa. Hệ thống tích hợp các công nghệ hiện đại như NextJS, NestJS, Electron, React Native, FastAPI, Gemini, kết hợp với mô hình dự đoán bệnh được huấn luyện từ tập dữ liệu y khoa nổi tiếng MIMIC-IV. Nhờ đó, hệ thống cung cấp gợi ý bệnh lý chính xác, nhanh chóng dựa trên ghi chú bệnh án, tuổi và giới tính, hỗ trợ hiệu quả cho bác sĩ trong công tác sàng lọc và chẩn đoán ban đầu.
 
-Mặc dù đã đạt được những kết quả khả quan, hệ thống vẫn còn hạn chế lớn là chưa sử dụng dữ liệu thực tế từ chính người dùng để huấn luyện và cải thiện mô hình. Trong thời gian tới, nhóm sẽ tập trung: Thu thập và tích hợp dữ liệu nội sinh từ hệ thống Revita để tái huấn luyện mô hình định kỳ, nâng cao độ chính xác và phù hợp với thực tế lâm sàng tại Việt Nam. Cải thiện trải nghiệm người dùng: tối ưu giao diện, tăng tốc độ phản hồi, hỗ trợ đa ngôn ngữ và tích hợp voice-to-text cho ghi chú bệnh án. Nâng cấp mô hình dự đoán: thử nghiệm các mô hình ngôn ngữ y khoa chuyên biệt (như BioClinicalBERT), bổ sung xử lý phủ định và ngữ cảnh phức tạp. Mở rộng nền tảng: tích hợp với hệ thống bệnh viện (HIS), và triển khai thử nghiệm thực tế tại các cơ sở y tế.
+Mặc dù đã đạt được những kết quả khả quan, hệ thống vẫn còn hạn chế lớn là chưa sử dụng dữ liệu thực tế từ chính hệ thống sinh ra trong quá trình vận hành để huấn luyện và cải thiện mô hình do hiện nay cơ chế gán nhãn dữ liệu cho các chẩn đoán của các y bác sĩ là phức tạp, cần sự tham gia thực hiện của con người. Và do hệ thống gợi ý chẩn đoán đang sử dụng dữ liệu huấn luyện đến từ tập MIMIC-IV nên mô hình chẩn đoán sẽ bị một số hạn chế từ tập dữ liệu này, dù là một tập dữ liệu cực kỳ lớn trong lĩnh vực y học nhưng MIMIC-IV chỉ mạnh về một số nhóm bệnh cụ thể, chẳng hạn như: nhóm bệnh tim mạch, nhiễm trùng, suy đa tạng, biến chứng sau phẫu thuật, nhóm bệnh huyết áp\dots
+
+Trong thời gian tới, nhóm sẽ tập trung: Thu thập và tích hợp dữ liệu nội sinh từ hệ thống để tái huấn luyện mô hình định kỳ, nâng cao độ chính xác và phù hợp với thực tế lâm sàng tại Việt Nam. Cải thiện trải nghiệm người dùng: tối ưu giao diện, tăng tốc độ phản hồi, hỗ trợ đa ngôn ngữ và tích hợp voice-to-text cho ghi chú bệnh án. Nâng cấp mô hình dự đoán: thử nghiệm các mô hình ngôn ngữ y khoa chuyên biệt (như BioClinicalBERT), bổ sung xử lý phủ định và ngữ cảnh phức tạp. Mở rộng nền tảng: tích hợp với hệ thống bệnh viện (HIS), và triển khai thử nghiệm thực tế tại các cơ sở y tế.
 
 \renewcommand{\refname}{TÀI LIỆU THAM KHẢO}
 \begin{thebibliography}{00}
@@ -353,26 +357,20 @@ Mặc dù đã đạt được những kết quả khả quan, hệ thống vẫ
     \bibitem{b20}
     M. Richards, \textit{Software Architecture Patterns}, 2nd ed. Sebastopol, CA, USA: O'Reilly Media, 2022.
     
-    \bibitem{b3}
-    S. Kinney, \textit{Electron in Action}, 2nd ed. Shelter Island, NY, USA: Manning Publications, 2025.
-    
     \bibitem{b4}
     A. Tazetdinov, \textit{Next.js Cookbook: Learn How to Build Scalable and High-Performance Apps from Scratch}. New Delhi, India: BPB Publications, 2023.
     
     \bibitem{b5}
     D. Abbott, H. Djirdeh, A. Accomazzo, and S. Shoemaker, \textit{Fullstack React Native: The Complete Guide to React Native}. San Francisco, CA, USA: Fullstack.io, 2017.
     
+    \bibitem{b3}
+    S. Kinney, \textit{Electron in Action}, 2nd ed. Shelter Island, NY, USA: Manning Publications, 2025.
+    
     \bibitem{b6}
     C. Nedelcu, \textit{Nginx HTTP Server}, 4th ed. Birmingham, U.K.: Packt Publishing, 2018.
     
     \bibitem{b7}
-    G. Magolan, J. Bell, D. Guijarro, A. de Peretti, and P. Housley, \textit{Nest.js: A Progressive Node.js Framework}. [Online]. Available: https://leanpub.com/nestjs
-    
-    \bibitem{b8}
-    A. Author, ``Supabase vs Firebase: Evaluation of Performance and Development of Progressive Web Apps,'' Bachelor's thesis, Dept. Inform. Technol., Metropolia Univ. Appl. Sci., Helsinki, Finland, May 2022.
-    
-    \bibitem{b9}
-    PayOS, ``PayOS API Documentation,'' 2025. [Online]. Available: https://payos.vn/docs/api/. Accessed: Nov. 17, 2025.
+    G. Magolan, J. Bell, D. Guijarro, A. de Peretti, and P. Housley, \textit{NestJS: A Progressive Node.js Framework}. Santa Rosa, CA, USA: Bleeding Edge Press, 2018.
     
     \bibitem{b10}
     C. D. Manning, P. Raghavan, and H. Schütze, ``Scoring, term weighting and the vector space model,'' in \textit{Introduction to Information Retrieval}. Cambridge, U.K.: Cambridge Univ. Press, 2008, ch. 6, pp. 110--134.
@@ -389,6 +387,12 @@ Mặc dù đã đạt được những kết quả khả quan, hệ thống vẫ
     \bibitem{b14}
     N. Poulton, \textit{Docker Deep Dive}. Portland, OR, USA: Nigel Poulton, 2017.
     
+    \bibitem{b21}
+    G. De Luca, \textit{FastAPI Cookbook}, 1st ed. Birmingham, UK: Packt Publishing, 2024.
+    
+    \bibitem{b22}
+    Google Cloud, ``Gemini 2.5 Flash | Generative AI on Vertex AI | Google Cloud Documentation.'' [Online]. Available: https://docs.cloud.google.com/vertex-ai/generative-ai/docs/models/gemini/2-5-flash. [Accessed: Dec. 1, 2025].
+    
     \bibitem{b15}
     R. O. Obe and L. S. Hsu, \textit{PostgreSQL: Up and Running: A Practical Guide to the Advanced Open Source Database}, 3rd ed. Sebastopol, CA, USA: O'Reilly Media, 2017.
     
@@ -398,11 +402,26 @@ Mặc dù đã đạt được những kết quả khả quan, hệ thống vẫ
     \bibitem{b17}
     S. Bradshaw, E. Brazil, and K. Chodorow, \textit{MongoDB: The Definitive Guide: Powerful and Scalable Data Storage}, 3rd ed. Sebastopol, CA, USA: O'Reilly Media, 2019.
     
+    \bibitem{b25}
+    T. A. Kass-Hout \textit{et al.}, ``OpenFDA: An innovative platform providing access to a wealth of FDA's publicly available data,'' \textit{J. Amer. Med. Inform. Assoc.}, vol. 23, no. 3, pp. 596--600, May 2016, doi: 10.1093/jamia/ocv153.
+    
+    \bibitem{b8}
+    Supabase, ``Storage | Supabase Docs.'' [Online]. Available: https://supabase.com/docs/guides/storage. [Accessed: Dec. 1, 2025].
+    
     \bibitem{b18}
     A. E. Johnson \textit{et al.}, ``MIMIC-IV, a freely accessible electronic health record dataset,'' \textit{Sci. Data}, vol. 10, no. 1, p. 1, Jan. 2023.
     
     \bibitem{b19}
     G. Kim, J. Humble, P. Debois, and J. Willis, \textit{The DevOps Handbook: How to Create World-Class Agility, Reliability, and Security in Technology Organizations}. Portland, OR, USA: IT Revolution Press, 2016.
+    
+    \bibitem{b24}
+    Resend, ``Managing Emails - Resend.'' [Online]. Available: https://resend.com/docs/dashboard/emails/introduction. [Accessed: Dec. 1, 2025].
+    
+    \bibitem{b23}
+    Amazon Web Services, \textit{Amazon Simple Notification Service: Developer Guide}. Seattle, WA, USA: Amazon Web Services, Inc., 2025.
+    
+    \bibitem{b9}
+    PayOS, ``PayOS API Documentation,'' 2025. [Online]. Available: https://payos.vn/docs/api/. Accessed: Nov. 17, 2025.
     
     \end{thebibliography}
 
