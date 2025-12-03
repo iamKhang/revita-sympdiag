@@ -167,11 +167,11 @@ Quy trình huấn luyện được triển khai bằng hệ sinh thái Scikit-le
 
 \begin{itemize}
 \item \textbf{Chuẩn bị dữ liệu}: nạp bộ hồ sơ thống nhất, san phẳng danh sách ICD và chuẩn hoá nội dung ghi chú (cắt chiều dài, loại bỏ ký tự dư thừa) trước khi tạo trường \texttt{text\_clean}.
-\item \textbf{Chọn nhãn}: sử dụng bảng tần suất đã tiền xử lý (nếu có) hoặc thống kê trực tiếp từ dữ liệu để xây dựng tập nhãn mục tiêu, chỉ giữ các mã có mức xuất hiện đủ lớn nhằm bảo đảm tính ổn định khi huấn luyện.
+\item \textbf{Chọn nhãn}: Chỉ giữ các bệnh có mức xuất hiện đủ lớn trong tập dữ liệu nhằm bảo đảm tính ổn định khi huấn luyện.
 \item \textbf{Chia dữ liệu}: dữ liệu được chia thành ba tập độc lập cho train/validation/test. Quá trình chia được thực hiện theo hai bước: đầu tiên tách tập test và giữ nguyên trong suốt quá trình huấn luyện; sau đó từ phần còn lại, tách thêm tập validation. Việc chia dữ liệu được thực hiện theo \texttt{subject\_id} sử dụng \texttt{GroupShuffleSplit} thay vì chia ngẫu nhiên theo từng record, nhằm đảm bảo tất cả các lần nhập viện của cùng một bệnh nhân chỉ xuất hiện trong một tập duy nhất. Cách tiếp cận này tránh hiện tượng rò rỉ dữ liệu (data leakage) khi cùng một bệnh nhân xuất hiện ở cả tập huấn luyện và tập kiểm tra, đồng thời phản ánh đúng mục tiêu thực tế của hệ thống là dự đoán cho các bệnh nhân hoàn toàn mới chưa từng xuất hiện trong dữ liệu huấn luyện. Tập validation được sử dụng để điều chỉnh siêu tham số và đánh giá hiệu năng trong quá trình huấn luyện, trong khi tập test chỉ được sử dụng một lần duy nhất ở giai đoạn đánh giá cuối cùng để đảm bảo tính khách quan.
-\item \textbf{Vector hoá}: áp dụng \texttt{TfidfVectorizer} với cấu hình \(n\)-gram từ đơn đến song ngữ, sử dụng sublinear TF, chuẩn hoá \(L_{2}\) và giới hạn kích thước từ vựng để kiểm soát bộ nhớ.
+\item \textbf{Vector hoá}: áp dụng \texttt{TfidfVectorizer} với cấu hình \(n\)-gram từ đơn và từ ghép, sử dụng sublinear TF, chuẩn hoá \(L_{2}\) và giới hạn kích thước từ vựng để kiểm soát bộ nhớ.
 \item \textbf{Mã hoá nhãn}: \texttt{MultiLabelBinarizer} định nghĩa thứ tự lớp thống nhất; các nhãn quá hiếm được tự động loại bỏ khỏi huấn luyện nhằm tránh cảnh báo trong quá trình dừng sớm.
-\item \textbf{Huấn luyện}: \texttt{OneVsRestClassifier} bao bọc \texttt{SGDClassifier} với hàm mất mát logistic, regularization \(L_{2}\) và cơ chế early stopping. Sau khi hội tụ, trọng số được chuyển về \texttt{float32} để tiết kiệm dung lượng.
+\item \textbf{Huấn luyện}: \texttt{OneVsRestClassifier} bao bọc \texttt{SGDClassifier} với hàm mất mát logistic, regularization \(L_{2}\).
 \item \textbf{Đóng gói}: sau khi huấn luyện hoàn tất, toàn bộ các thành phần cần thiết cho suy luận được đóng gói thành một file duy nhất sử dụng \texttt{joblib}, bao gồm: bộ phân loại \texttt{OneVsRestClassifier} đã được huấn luyện, vectorizer từ vựng (\texttt{word\_vec}), vectorizer ký tự tùy chọn (\texttt{char\_vec}), bộ mã hoá nhãn đa lớp (\texttt{MultiLabelBinarizer}) để ánh xạ giữa mã ICD và chỉ số lớp, cùng với các tham số cấu hình. Để tối ưu dung lượng lưu trữ, tất cả các trọng số của mô hình được chuyển đổi sang kiểu dữ liệu \texttt{float32} trước khi lưu. File đóng gói này cho phép triển khai mô hình một cách độc lập mà không cần tái huấn luyện, đảm bảo tính nhất quán giữa môi trường phát triển và sản xuất.
 
 \item \textbf{Suy luận}: quy trình dự đoán được thực hiện qua các bước tuần tự. Đầu tiên, hệ thống nhận thông tin đầu vào bao gồm tuổi, giới tính và ghi chú bệnh án của bệnh nhân. Tiếp theo, văn bản được vector hoá bằng \texttt{TfidfVectorizer} đã được huấn luyện trước đó, tạo ra biểu diễn TF-IDF tương ứng. Nếu có vectorizer ký tự, các đặc trưng ký tự được ghép nối với đặc trưng từ vựng để tạo vector đặc trưng cuối cùng. Mô hình \texttt{OneVsRestClassifier} tính toán xác suất cho từng mã ICD thông qua phương thức \texttt{predict\_proba}, sau đó các xác suất được sắp xếp theo thứ tự giảm dần và chọn top-K mã có xác suất cao nhất. Cuối cùng, hệ thống ánh xạ các mã ICD sang tên bệnh tương ứng từ bảng tra cứu và trả về danh sách các chẩn đoán kèm theo xác suất dự đoán cho bác sĩ tham khảo.
@@ -190,7 +190,7 @@ Quy trình huấn luyện được triển khai bằng hệ sinh thái Scikit-le
 \item \textbf{PostgreSQL} được sử dụng làm cơ sở dữ liệu chính để quản lý toàn bộ hệ thống nghiệp vụ lớn của Revita \cite{b15}.
 \item \textbf{Redis} được triển khai như bộ nhớ đệm (cache) hiệu năng cao và sử dụng Redis Streams để lưu trữ luồng sự kiện theo thời gian thực \cite{b16}.
 \item \textbf{MongoDB} được dùng để lưu trữ và quản lý dữ liệu thuốc với khối lượng lớn, cấu trúc linh hoạt \cite{b17}.
-\item \textbf{Supabase} cung cấp nền tảng backend-as-a-service cho lưu trữ đối tượng, xác thực và sự kiện thời gian thực, giúp tăng tốc phát triển các module phụ trợ \cite{b8}.
+\item \textbf{Supabase} cung cấp nền tảng backend-as-a-service cho lưu trữ các tập tin đa phương tiện trong hệ thống. \cite{b8}.
 \end{itemize}
 
 \subsection{Dataset MIMIC-IV}
@@ -306,8 +306,8 @@ Mô hình được huấn luyện theo hướng phân loại đa nhãn (multi-la
 
 \begin{itemize}
 \item Đặc trưng đầu vào: TF-IDF n-gram (1--2 từ) trên văn bản đã làm sạch.
-\item Dữ liệu huấn luyện: $\sim$200 k hồ sơ MIMIC-IV được chia thành ba tập với tỷ lệ 70\%/15\%/15\% cho train/validation/test. Việc chia dữ liệu được thực hiện theo \texttt{subject\_id} để đảm bảo không có bệnh nhân nào xuất hiện ở nhiều tập khác nhau, tránh hiện tượng rò rỉ dữ liệu.
-\item Đầu ra: xác suất của từng mã ICD ($\approx$ 2k nhãn)
+\item Dữ liệu huấn luyện: $\sim$400 k hồ sơ MIMIC-IV được chia thành ba tập với tỷ lệ 70\%/15\%/15\% cho train/validation/test. Việc chia dữ liệu được thực hiện theo \texttt{subject\_id} để đảm bảo không có bệnh nhân nào xuất hiện ở nhiều tập khác nhau, tránh hiện tượng rò rỉ dữ liệu.
+\item Đầu ra: xác suất của từng mã ICD ($\approx$ 40000 nhãn)
 \item Chiến lược đánh giá: top-K (1, 3, 5, 10)
 \end{itemize}
 
