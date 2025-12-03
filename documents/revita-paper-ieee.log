@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.11.16)  3 DEC 2025 19:22
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.11.16)  3 DEC 2025 20:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -350,6 +350,16 @@ Package: array 2024/10/17 v2.6g Tabular extension package (FMi)
 \backup@length=\skip60
 \ar@cellbox=\box65
 )
+(/usr/local/texlive/2025basic/texmf-dist/tex/latex/tools/tabularx.sty
+Package: tabularx 2023/12/11 v2.12a `tabularx' package (DPC)
+\TX@col@width=\dimen195
+\TX@old@table=\dimen196
+\TX@old@col=\dimen197
+\TX@target=\dimen198
+\TX@delta=\dimen199
+\TX@cols=\count311
+\TX@ftn=\toks28
+)
 (/usr/local/texlive/2025basic/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip18
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
@@ -371,19 +381,19 @@ Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
 \f@nch@widthL=\skip72
 \f@nch@widthC=\skip73
 \f@nch@widthR=\skip74
-\@temptokenb=\toks28
+\@temptokenb=\toks29
 )
 (/usr/local/texlive/2025basic/texmf-dist/tex/latex/titlesec/titlesec.sty
 Package: titlesec 2025/01/04 v2.17 Sectioning titles
 \ttl@box=\box66
 \beforetitleunit=\skip75
 \aftertitleunit=\skip76
-\ttl@plus=\dimen195
-\ttl@minus=\dimen196
-\ttl@toksa=\toks29
-\titlewidth=\dimen197
-\titlewidthlast=\dimen198
-\titlewidthfirst=\dimen199
+\ttl@plus=\dimen256
+\ttl@minus=\dimen257
+\ttl@toksa=\toks30
+\titlewidth=\dimen258
+\titlewidthlast=\dimen259
+\titlewidthfirst=\dimen260
 
 
 Package titlesec Warning: Non standard sectioning command \subparagraph
@@ -525,14 +535,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 174--175
  []
 
 
+Underfull \hbox (badness 1377) in paragraph at lines 194--195
+[]\TU/TimesNewRoman(0)/b/n/10 Nginx \TU/TimesNewRoman(0)/m/sc/10 được triển kha
+i làm reverse proxy và SSL
+ []
+
+
+
+
+Underfull \hbox (badness 2261) in paragraph at lines 195--196
+\TU/TimesNewRoman(0)/m/sc/10 để tự động sinh tài liệu API tương tác, hỗ trợ
+ []
 
 File: images/media/image2.png Graphic file (type bmp)
 <images/media/image2.png>
 File: images/media/image3.png Graphic file (type bmp)
 <images/media/image3.png>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 
 
 [4]
@@ -541,106 +559,107 @@ File: images/media/image4.png Graphic file (type bmp)
 File: images/media/image5.png Graphic file (type bmp)
 <images/media/image5.png>
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+
+File: images/media/Architecture.drawio.pdf Graphic file (type pdf)
+<use images/media/Architecture.drawio.pdf>
+
+Underfull \vbox (badness 1902) has occurred while \output is active []
 
 
 
 [5]
-File: images/media/Architecture.drawio.pdf Graphic file (type pdf)
-<use images/media/Architecture.drawio.pdf>
-
-
 File: images/media/image9.png Graphic file (type bmp)
 <images/media/image9.png>
+
+
 File: images/media/image10.png Graphic file (type bmp)
 <images/media/image10.png>
 
-
-[6]
-Underfull \hbox (badness 3657) in paragraph at lines 309--310
+Underfull \hbox (badness 3657) in paragraph at lines 312--313
 []\TU/TimesNewRoman(0)/m/sc/10 Dữ liệu huấn luyện: $\OMS/cmsy/m/n/10 ^^X$\TU/Ti
 mesNewRoman(0)/m/sc/10 400 k hồ sơ MIMIC-IV
  []
 
 
-Underfull \hbox (badness 4441) in paragraph at lines 333--333
-[]|\TU/TimesNewRoman(0)/m/n/7 Trung bình số mã
- []
 
-
-
-
-Underfull \hbox (badness 2735) in paragraph at lines 352--353
+[6]
+Underfull \hbox (badness 2735) in paragraph at lines 360--361
 []\TU/TimesNewRoman(0)/m/sc/8 Nhật Dương, “Việt Nam sẽ có 18 triệu người cao tu
 ổi vào
  []
 
 
-Underfull \hbox (badness 7595) in paragraph at lines 352--353
+Underfull \hbox (badness 7595) in paragraph at lines 360--361
 \TU/TimesNewRoman(0)/m/sc/8 năm 2030,” \TU/TimesNewRoman(0)/m/it/8 VnEconomy\TU
 /TimesNewRoman(0)/m/sc/8 , Jan. 10, 2025. [Online]. Available:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 352--353
+Underfull \hbox (badness 10000) in paragraph at lines 360--361
 \TU/TimesNewRoman(0)/m/sc/8 https://vneconomy.vn/viet-nam-se-co-18-trieu-nguoi-
 cao-tuoi-vao-
  []
 
 
-Underfull \hbox (badness 1590) in paragraph at lines 361--362
+
+
+Underfull \hbox (badness 1590) in paragraph at lines 369--370
 []\TU/TimesNewRoman(0)/m/sc/8 A. Tazetdinov, \TU/TimesNewRoman(0)/m/it/8 Next.j
 s Cookbook: Learn How to Build Scalable
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 394--395
+Underfull \hbox (badness 10000) in paragraph at lines 405--406
 []\TU/TimesNewRoman(0)/m/sc/8 Google Cloud, “Gemini 2.5 Flash | Generative AI o
 n
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 394--395
+Underfull \hbox (badness 10000) in paragraph at lines 405--406
 \TU/TimesNewRoman(0)/m/sc/8 Vertex AI | Google Cloud Documentation.” [Online].
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 394--395
+Underfull \hbox (badness 10000) in paragraph at lines 405--406
 \TU/TimesNewRoman(0)/m/sc/8 Available: https://docs.cloud.google.com/vertex-ai/
 generative-
  []
 
 
-Underfull \hbox (badness 1418) in paragraph at lines 406--407
+Underfull \hbox (badness 1418) in paragraph at lines 417--418
 \TU/TimesNewRoman(0)/m/sc/8 access to a wealth of FDA’s publicly available data
 ,” \TU/TimesNewRoman(0)/m/it/8 J. Amer.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 409--410
+Underfull \hbox (badness 10000) in paragraph at lines 420--421
 []\TU/TimesNewRoman(0)/m/sc/8 Supabase, “Storage | Supabase Docs.” [Online]. Av
 ailable:
  []
 
 
-Underfull \hbox (badness 2103) in paragraph at lines 415--416
+Underfull \hbox (badness 2103) in paragraph at lines 426--427
 \TU/TimesNewRoman(0)/m/it/8 How to Create World-Class Agility, Reliability, and
  Security in
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 418--419
+Underfull \hbox (badness 10000) in paragraph at lines 429--430
 []\TU/TimesNewRoman(0)/m/sc/8 Resend, “Managing Emails - Resend.” [Online]. Ava
 ilable:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 418--419
+Underfull \hbox (badness 10000) in paragraph at lines 429--430
 \TU/TimesNewRoman(0)/m/sc/8 https://resend.com/docs/dashboard/emails/introducti
 on. [Accessed:
  []
 
 
-Underfull \hbox (badness 1917) in paragraph at lines 424--425
+Underfull \hbox (badness 1917) in paragraph at lines 435--436
 []\TU/TimesNewRoman(0)/m/sc/8 PayOS, “PayOS API Documentation,” 2025. [Online].
  Available:
  []
@@ -669,10 +688,10 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
  ) 
 Here is how much of TeX's memory you used:
- 8363 strings out of 475366
- 190075 string characters out of 5762338
- 656876 words of memory out of 5000000
- 31196 multiletter control sequences out of 15000+600000
+ 8426 strings out of 475366
+ 191054 string characters out of 5762338
+ 659017 words of memory out of 5000000
+ 31256 multiletter control sequences out of 15000+600000
  561032 words of font info for 106 fonts, out of 8000000 for 9000
  319 hyphenation exceptions out of 8191
  79i,11n,93p,1795b,403s stack positions out of 10000i,1000n,20000p,200000b,200000s

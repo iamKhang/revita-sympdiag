@@ -12,7 +12,7 @@
 \setotherlanguage{english}
 \defaultfontfeatures{Ligatures=TeX}
 \setmainfont{Times New Roman}
-\usepackage{longtable,booktabs,array}
+\usepackage{longtable,booktabs,array,tabularx}
 \usepackage{url}
 \usepackage{fancyhdr}
 
@@ -172,9 +172,9 @@ Quy trình huấn luyện được triển khai bằng hệ sinh thái Scikit-le
 \item \textbf{Vector hoá}: áp dụng \texttt{TfidfVectorizer} với cấu hình \(n\)-gram từ đơn và từ ghép, sử dụng sublinear TF, chuẩn hoá \(L_{2}\) và giới hạn kích thước từ vựng để kiểm soát bộ nhớ.
 \item \textbf{Mã hoá nhãn}: \texttt{MultiLabelBinarizer} định nghĩa thứ tự lớp thống nhất; các nhãn quá hiếm được tự động loại bỏ khỏi huấn luyện nhằm tránh cảnh báo trong quá trình dừng sớm.
 \item \textbf{Huấn luyện}: \texttt{OneVsRestClassifier} bao bọc \texttt{SGDClassifier} với hàm mất mát logistic, regularization \(L_{2}\).
-\item \textbf{Đóng gói}: sau khi huấn luyện hoàn tất, toàn bộ các thành phần cần thiết cho suy luận được đóng gói thành một file duy nhất sử dụng \texttt{joblib}, bao gồm: bộ phân loại \texttt{OneVsRestClassifier} đã được huấn luyện, vectorizer từ vựng (\texttt{word\_vec}), vectorizer ký tự tùy chọn (\texttt{char\_vec}), bộ mã hoá nhãn đa lớp (\texttt{MultiLabelBinarizer}) để ánh xạ giữa mã ICD và chỉ số lớp, cùng với các tham số cấu hình. Để tối ưu dung lượng lưu trữ, tất cả các trọng số của mô hình được chuyển đổi sang kiểu dữ liệu \texttt{float32} trước khi lưu. File đóng gói này cho phép triển khai mô hình một cách độc lập mà không cần tái huấn luyện, đảm bảo tính nhất quán giữa môi trường phát triển và sản xuất.
+\item \textbf{Đóng gói}: toàn bộ các thành phần cần thiết cho suy luận (bộ phân loại, vectorizer, bộ mã hoá nhãn và tham số cấu hình) được đóng gói thành một file duy nhất sử dụng \texttt{joblib} sau khi huấn luyện hoàn tất, cho phép triển khai mô hình độc lập mà không cần tái huấn luyện.
 
-\item \textbf{Suy luận}: quy trình dự đoán được thực hiện qua các bước tuần tự. Đầu tiên, hệ thống nhận thông tin đầu vào bao gồm tuổi, giới tính và ghi chú bệnh án của bệnh nhân. Tiếp theo, văn bản được vector hoá bằng \texttt{TfidfVectorizer} đã được huấn luyện trước đó, tạo ra biểu diễn TF-IDF tương ứng. Nếu có vectorizer ký tự, các đặc trưng ký tự được ghép nối với đặc trưng từ vựng để tạo vector đặc trưng cuối cùng. Mô hình \texttt{OneVsRestClassifier} tính toán xác suất cho từng mã ICD thông qua phương thức \texttt{predict\_proba}, sau đó các xác suất được sắp xếp theo thứ tự giảm dần và chọn top-K mã có xác suất cao nhất. Cuối cùng, hệ thống ánh xạ các mã ICD sang tên bệnh tương ứng từ bảng tra cứu và trả về danh sách các chẩn đoán kèm theo xác suất dự đoán cho bác sĩ tham khảo.
+\item \textbf{Suy luận}: hệ thống nhận đầu vào gồm tuổi, giới tính và ghi chú bệnh án, vector hoá văn bản bằng \texttt{TfidfVectorizer} đã được huấn luyện, sau đó mô hình \texttt{OneVsRestClassifier} tính toán xác suất cho từng mã ICD và trả về top-K mã có xác suất cao nhất kèm tên bệnh tương ứng.
 \end{itemize}
 
 \subsection{Công nghệ sử dụng trong hệ thống}
@@ -191,6 +191,9 @@ Quy trình huấn luyện được triển khai bằng hệ sinh thái Scikit-le
 \item \textbf{Redis} được triển khai như bộ nhớ đệm (cache) hiệu năng cao và sử dụng Redis Streams để lưu trữ luồng sự kiện theo thời gian thực \cite{b16}.
 \item \textbf{MongoDB} được dùng để lưu trữ và quản lý dữ liệu thuốc với khối lượng lớn, cấu trúc linh hoạt \cite{b17}.
 \item \textbf{Supabase} cung cấp nền tảng backend-as-a-service cho lưu trữ các tập tin đa phương tiện trong hệ thống. \cite{b8}.
+\item \textbf{Nginx} được triển khai làm reverse proxy và SSL termination, định tuyến toàn bộ request từ bên ngoài đến Next.js, NestJS và FastAPI, đồng thời tự động cấp và gia hạn chứng chỉ Let’s Encrypt. \cite{b7}
+\item \textbf{Swagger} (OpenAPI) được tích hợp vào backend NestJS để tự động sinh tài liệu API tương tác, hỗ trợ kiểm thử endpoint trực tiếp trên trình duyệt và giúp frontend/mobile tích hợp nhanh chóng. \cite{b26}
+
 \end{itemize}
 
 \subsection{Dataset MIMIC-IV}
@@ -306,44 +309,49 @@ Mô hình được huấn luyện theo hướng phân loại đa nhãn (multi-la
 
 \begin{itemize}
 \item Đặc trưng đầu vào: TF-IDF n-gram (1--2 từ) trên văn bản đã làm sạch.
-\item Dữ liệu huấn luyện: $\sim$400 k hồ sơ MIMIC-IV được chia thành ba tập với tỷ lệ 70\%/15\%/15\% cho train/validation/test. Việc chia dữ liệu được thực hiện theo \texttt{subject\_id} để đảm bảo không có bệnh nhân nào xuất hiện ở nhiều tập khác nhau, tránh hiện tượng rò rỉ dữ liệu.
-\item Đầu ra: xác suất của từng mã ICD ($\approx$ 40000 nhãn)
+\item Dữ liệu huấn luyện: $\sim$400 k hồ sơ MIMIC-IV được chia thành ba tập với tỷ lệ 70\%/15\%/15\% cho train/validation/test.
+\item Đầu ra: xác suất của từng mã ICD ($\approx$ 4000 nhãn)
 \item Chiến lược đánh giá: top-K (1, 3, 5, 10)
 \end{itemize}
+
+
+Tiến hành định lượng trên 50 mẫu ngẫu nhiên được lấy từ tập test. Quá trình đánh giá được thực hiện bằng cách so sánh các mã ICD thực tế với top-K mã ICD có xác suất cao nhất do mô hình dự đoán. Chỉ số Hit@K đo lường tỷ lệ các ca có ít nhất một mã đúng xuất hiện trong top-K dự đoán, phản ánh khả năng mô hình đề xuất được ít nhất một chẩn đoán chính xác trong K gợi ý hàng đầu.
 
 \begin{table}[H]
 \caption{Kết quả định lượng}
 \label{tab:results}
 \centering
 \scriptsize
-\begin{tabular}{|p{2.2cm}|c|p{3.5cm}|}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\begin{tabular}{|C{2.2cm}|C{1.5cm}|C{3.5cm}|}
 \hline
 \textbf{Chỉ số} & \textbf{Kết quả} & \textbf{Giải thích} \\
 \hline
 Tổng số ca kiểm tra & 50 & Mẫu từ tập test \\
 \hline
-Hit@1 & 76\% & 76\% ca có ít nhất 1 mã đúng ở vị trí đầu tiên \\
+Hit@1 & 42\% & 42\% ca có ít nhất 1 mã đúng ở vị trí đầu tiên \\
 \hline
-Hit@3 & 94\% & 94\% ca có ít nhất 1 mã đúng trong 3 mã đầu \\
+Hit@3 & 68\% & 68\% ca có ít nhất 1 mã đúng trong 3 mã đầu \\
 \hline
-Hit@5 & 96\% & 96\% ca có ít nhất 1 mã đúng trong top-5 \\
+Hit@5 & 86\% & 86\% ca có ít nhất 1 mã đúng trong top-5 \\
 \hline
-Hit@10 & 98\% & 49/50 ca có ít nhất 1 mã đúng trong top-10 \\
+Hit@10 & 92\% & 46/50 ca có ít nhất 1 mã đúng trong top-10 \\
 \hline
-Trung bình số mã đúng / ca & 2.62 & Mỗi ca dự đoán trúng trung bình $\sim$2.6 bệnh \\
+Trung bình số mã đúng / ca & 2.72 & Mỗi ca dự đoán trúng trung bình $\sim$2.7 bệnh \\
 \hline
-Số ca dự đoán đúng hoàn toàn & 22/50 (44\%) & Toàn bộ mã thật đều nằm trong top-10 \\
+Số ca dự đoán đúng hoàn toàn & 15/50 (30\%) & Toàn bộ mã thật đều nằm trong top-10 \\
 \hline
 \end{tabular}
 \end{table}
 
 \section{KẾT LUẬN}
 
-Trong bài báo này, chúng tôi đã trình bày chi tiết quy trình xây dựng và triển khai hệ thống quản lý quy trình khám chữa bệnh tại các phòng khám đa khoa. Hệ thống tích hợp các công nghệ hiện đại như NextJS, NestJS, Electron, React Native, FastAPI, Gemini, kết hợp với mô hình dự đoán bệnh được huấn luyện từ tập dữ liệu y khoa nổi tiếng MIMIC-IV. Nhờ đó, hệ thống cung cấp gợi ý bệnh lý chính xác, nhanh chóng dựa trên ghi chú bệnh án, tuổi và giới tính, hỗ trợ hiệu quả cho bác sĩ trong công tác sàng lọc và chẩn đoán ban đầu.
+Trong bài báo này, chúng tôi đã trình bày chi tiết quy trình xây dựng và triển khai hệ thống quản lý quy trình khám chữa bệnh tại các phòng khám đa khoa. Hệ thống tích hợp các công nghệ hiện đại như NextJS, NestJS, Electron, React Native, FastAPI, Gemini, kết hợp với mô hình dự đoán bệnh được huấn luyện từ tập dữ liệu y khoa nổi tiếng MIMIC-IV. Nhờ đó, hệ thống cung cấp gợi ý bệnh lý chính xác, nhanh chóng dựa trên ghi chú bệnh án, tuổi và giới tính của bệnh nhân, hỗ trợ hiệu quả cho bác sĩ trong công tác sàng lọc và chẩn đoán ban đầu.
 
-Mặc dù đã đạt được những kết quả khả quan, hệ thống vẫn còn hạn chế lớn là chưa sử dụng dữ liệu thực tế từ chính hệ thống sinh ra trong quá trình vận hành để huấn luyện và cải thiện mô hình do hiện nay cơ chế gán nhãn dữ liệu cho các chẩn đoán của các y bác sĩ là phức tạp, cần sự tham gia thực hiện của con người. Và do hệ thống gợi ý chẩn đoán đang sử dụng dữ liệu huấn luyện đến từ tập MIMIC-IV nên mô hình chẩn đoán sẽ bị một số hạn chế từ tập dữ liệu này, dù là một tập dữ liệu cực kỳ lớn trong lĩnh vực y học nhưng MIMIC-IV chỉ mạnh về một số nhóm bệnh cụ thể, chẳng hạn như: nhóm bệnh tim mạch, nhiễm trùng, suy đa tạng, biến chứng sau phẫu thuật, nhóm bệnh huyết áp\dots
+Mặc dù đã đạt được những kết quả khả quan, hệ thống vẫn còn hạn chế lớn là chưa sử dụng dữ liệu nội sinh từ chính hệ thống sinh ra trong quá trình vận hành để huấn luyện và cải thiện mô hình do hiện nay cơ chế gán nhãn dữ liệu cho các chẩn đoán của các y bác sĩ là phức tạp, cần sự tham gia thực hiện của con người và phải có kiến thức y khoa. Và do hệ thống gợi ý chẩn đoán đang sử dụng dữ liệu huấn luyện đến từ tập MIMIC-IV nên mô hình chẩn đoán sẽ bị một số hạn chế từ tập dữ liệu này, dù là một tập dữ liệu cực kỳ lớn trong lĩnh vực y học nhưng MIMIC-IV chỉ mạnh về một số nhóm bệnh cụ thể, chẳng hạn như: nhóm bệnh tim mạch, nhiễm trùng, suy đa tạng, biến chứng sau phẫu thuật, nhóm bệnh huyết áp\dots
 
-Trong thời gian tới, nhóm sẽ tập trung: Thu thập và tích hợp dữ liệu nội sinh từ hệ thống để tái huấn luyện mô hình định kỳ, nâng cao độ chính xác và phù hợp với thực tế lâm sàng tại Việt Nam. Cải thiện trải nghiệm người dùng: tối ưu giao diện, tăng tốc độ phản hồi, hỗ trợ đa ngôn ngữ và tích hợp voice-to-text cho ghi chú bệnh án. Nâng cấp mô hình dự đoán: thử nghiệm các mô hình ngôn ngữ y khoa chuyên biệt (như BioClinicalBERT), bổ sung xử lý phủ định và ngữ cảnh phức tạp. Mở rộng nền tảng: tích hợp với hệ thống bệnh viện (HIS), và triển khai thử nghiệm thực tế tại các cơ sở y tế.
+Trong thời gian tới, nhóm sẽ tập trung: Thu thập và tích hợp dữ liệu nội sinh từ hệ thống để tái huấn luyện mô hình định kỳ, nâng cao độ chính xác và phù hợp với thực tế lâm sàng tại Việt Nam. Cải thiện trải nghiệm người dùng: tối ưu giao diện, tăng tốc độ phản hồi, hỗ trợ đa ngôn ngữ và tích hợp voice-to-text cho bệnh án. Nâng cấp mô hình dự đoán: thử nghiệm các mô hình ngôn ngữ y khoa chuyên biệt (như BioClinicalBERT), bổ sung xử lý phủ định và ngữ cảnh phức tạp. Mở rộng nền tảng: tích hợp với hệ thống bệnh viện (HIS), và triển khai thử nghiệm thực tế tại các cơ sở y tế.
+
 
 \renewcommand{\refname}{TÀI LIỆU THAM KHẢO}
 \begin{thebibliography}{00}
@@ -371,6 +379,9 @@ Trong thời gian tới, nhóm sẽ tập trung: Thu thập và tích hợp dữ
     
     \bibitem{b7}
     G. Magolan, J. Bell, D. Guijarro, A. de Peretti, and P. Housley, \textit{NestJS: A Progressive Node.js Framework}. Santa Rosa, CA, USA: Bleeding Edge Press, 2018.
+    
+    \bibitem{b26}
+    J. S. Ponelat and L. L. Rosenstock, \textit{Designing APIs with Swagger and OpenAPI}. Shelter Island, NY, USA: Manning Publications, 2022.
     
     \bibitem{b10}
     C. D. Manning, P. Raghavan, and H. Schütze, ``Scoring, term weighting and the vector space model,'' in \textit{Introduction to Information Retrieval}. Cambridge, U.K.: Cambridge Univ. Press, 2008, ch. 6, pp. 110--134.
